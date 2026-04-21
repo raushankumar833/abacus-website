@@ -18,7 +18,7 @@ import {
   Rating,
   IconButton,
 } from '@mui/material';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import SpeedIcon from '@mui/icons-material/Speed';
 import MemoryIcon from '@mui/icons-material/Memory';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
@@ -31,9 +31,11 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import StarIcon from '@mui/icons-material/Star';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+// Make sure this path is correct for your project structure
+import homeImage from '../assets/home1.png'; 
 
 const Home = () => {
-  // Brand Colors (Same as About page)
+  // Brand Colors
   const colors = {
     orange: '#FF6B35',
     orangeLight: '#FF8A5C',
@@ -154,514 +156,608 @@ const Home = () => {
 
   return (
     <Box>
-      {/* Hero Section with Orange Background (No Gradient) */}
-      <Box
+      {/* Hero Section */}
+    <Box
+  sx={{
+    bgcolor: colors.orange,
+    color: 'white',
+    py: { xs: 8, md: 10 },   // 👈 better top-bottom spacing
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '0 0 60px 60px',
+  }}
+>
+
+  <Box sx={{ width: '100%', position: 'relative', zIndex: 2 }}>
+    <Grid 
+      container 
+      spacing={4} 
+      alignItems="center"
+      sx={{ minHeight: { md: '85vh' } }}  // 👈 better than 100vh
+    >
+
+      {/* LEFT SIDE */}
+      <Grid 
+        item 
+        xs={12} 
+        md={6}
         sx={{
-          bgcolor: colors.orange,
-          color: 'white',
-          py: { xs: 6, md: 10 },
-          position: 'relative',
-          overflow: 'hidden',
-          borderRadius: '0 0 60px 60px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          px: { xs: 3, md: 8 },   // 👈 FIXED (15 → 8)
         }}
       >
-        <Container maxWidth="lg">
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-              >
-                <Chip 
-                  label="⭐ India's #1 Abacus Academy" 
-                  sx={{ 
-                    bgcolor: colors.yellow, 
-                    color: colors.orangeDark,
-                    mb: 3,
-                    fontWeight: 600,
-                    fontSize: '1rem',
-                    py: 2,
-                  }} 
-                />
-                <Typography 
-                  variant="h1" 
-                  sx={{ 
-                    fontSize: { xs: 36, md: 52, lg: 60 }, 
-                    mb: 2,
-                    fontWeight: 800,
-                    lineHeight: 1.2
-                  }}
-                >
-                  Master Mental Math with{' '}
-                  <Box component="span" sx={{ display: 'inline-block', borderBottom: `4px solid ${colors.yellow}` }}>
-                    Abacus
-                  </Box>
-                </Typography>
-                <Typography variant="h6" sx={{ mb: 4, opacity: 0.95, lineHeight: 1.5 }}>
-                  Transform your child's mathematical abilities with our proven abacus training program. 
-                  Join 10,000+ happy students!
-                </Typography>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    sx={{
-                      bgcolor: colors.yellow,
-                      color: colors.orangeDark,
-                      '&:hover': { 
-                        bgcolor: colors.yellowLight,
-                        transform: 'translateY(-2px)'
-                      },
-                      px: 4,
-                      py: 1.5,
-                      fontWeight: 700,
-                    }}
-                  >
-                    Start Free Trial
-                  </Button>
-                  <Button 
-                    variant="outlined" 
-                    size="large" 
-                    sx={{ 
-                      color: 'white', 
-                      borderColor: 'white',
-                      '&:hover': { 
-                        borderColor: colors.yellow,
-                        bgcolor: alpha(colors.yellow, 0.1)
-                      },
-                      px: 4,
-                      py: 1.5,
-                    }}
-                  >
-                    <PlayCircleIcon sx={{ mr: 1 }} />
-                    Watch Demo
-                  </Button>
-                </Stack>
-                
-                {/* Trust Badges */}
-                <Stack direction="row" spacing={2} sx={{ mt: 4, flexWrap: 'wrap', gap: 1 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <CheckCircleIcon sx={{ fontSize: 20, color: colors.yellow }} />
-                    <Typography variant="body2">10,000+ Students</Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <CheckCircleIcon sx={{ fontSize: 20, color: colors.yellow }} />
-                    <Typography variant="body2">50+ Expert Teachers</Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <CheckCircleIcon sx={{ fontSize: 20, color: colors.yellow }} />
-                    <Typography variant="body2">98% Success Rate</Typography>
-                  </Box>
-                </Stack>
-              </motion.div>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ x: 100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-              >
-                <Paper
-                  elevation={20}
-                  sx={{
-                    borderRadius: 4,
-                    overflow: 'hidden',
-                    position: 'relative',
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src="https://images.unsplash.com/photo-1519457435734-28bd7148ac06?ixlib=rb-4.0.3"
-                    alt="Abacus Learning"
-                    sx={{
-                      width: '100%',
-                      height: 'auto',
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 20,
-                      left: 20,
-                      bgcolor: alpha(colors.orangeDark, 0.9),
-                      borderRadius: 2,
-                      p: 1,
-                      px: 2,
-                    }}
-                  >
-                    <Typography variant="body2">✨ Featured in Education Today</Typography>
-                  </Box>
-                </Paper>
-              </motion.div>
-            </Grid>
-          </Grid>
-        </Container>
-        
-        {/* Decorative Elements with Orange, Yellow, Pink */}
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: -50,
-            left: -50,
-            width: 200,
-            height: 200,
-            borderRadius: '50%',
-            bgcolor: alpha(colors.yellow, 0.2),
-            zIndex: 0,
-          }}
-        />
-        <Box
-          sx={{
-            position: 'absolute',
-            top: -30,
-            right: -30,
-            width: 150,
-            height: 150,
-            borderRadius: '50%',
-            bgcolor: alpha(colors.pink, 0.2),
-            zIndex: 0,
-          }}
-        />
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: 100,
-            right: 100,
-            width: 100,
-            height: 100,
-            borderRadius: '50%',
-            bgcolor: alpha(colors.yellow, 0.15),
-            zIndex: 0,
-          }}
-        />
-      </Box>
+        <Box sx={{ maxWidth: 520 }}>
 
-      {/* Features Section */}
-      <Container sx={{ py: 8 }}>
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-        >
           <Chip 
-            label="Why Choose Us" 
+            label="India's #1 Abacus Academy" 
             sx={{ 
-              bgcolor: alpha(colors.orange, 0.1), 
-              color: colors.orange,
-              mx: 'auto',
-              display: 'table',
-              mb: 2,
-              fontWeight: 600
+              bgcolor: alpha(colors.yellow, 0.15), 
+              color: colors.yellow,
+              mb: 3,
+              fontWeight: 600,
             }} 
           />
+
           <Typography 
-            variant="h3" 
-            align="center" 
-            gutterBottom 
+            variant="h2" 
             sx={{ 
-              fontWeight: 700,
-              color: colors.orange,
+              fontWeight: 800,
+              mb: 2,
+              fontSize: { xs: '2.2rem', md: '3.4rem' },
+              lineHeight: 1.2,
             }}
           >
-            Why Choose Pro Kidz?
+            Master Mental Math with{' '}
+            <Box 
+              component="span" 
+              sx={{ 
+                color: colors.yellow,
+                borderBottom: `4px solid ${colors.yellow}`,
+              }}
+            >
+              Pro Kidz
+            </Box>
           </Typography>
+
           <Typography 
             variant="h6" 
-            align="center" 
-            color="text.secondary" 
-            sx={{ mb: 6, maxWidth: 600, mx: 'auto' }}
+            sx={{ mb: 4, opacity: 0.85 }}
           >
-            Discover the amazing benefits of learning abacus with India's most trusted academy
+            Unlock your child's hidden potential with our proven abacus training methodology
           </Typography>
-        </motion.div>
 
-        <Grid container spacing={4}>
-          {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ delay: index * 0.05 }}
-                viewport={{ once: true }}
-              >
-                <Card 
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+            <Button 
+              variant="contained"
+              sx={{ 
+                bgcolor: colors.yellow, 
+                color: colors.orange,
+                px: 4,
+                py: 1.5,
+                fontWeight: 600,
+                boxShadow: 3,
+                '&:hover': {
+                  transform: 'translateY(-3px)',
+                  boxShadow: 6,
+                }
+              }}
+            >
+              Start Learning
+            </Button>
+
+            <Button 
+              variant="outlined"
+              sx={{ 
+                color: 'white', 
+                borderColor: 'white',
+                px: 4,
+                py: 1.5,
+                '&:hover': {
+                  bgcolor: alpha(colors.yellow, 0.1),
+                  borderColor: colors.yellow,
+                }
+              }}
+            >
+              Watch Demo
+            </Button>
+          </Stack>
+
+          {/* Stats */}
+          <Stack direction="row" spacing={5} sx={{ mt: 5 }}>
+            <Box>
+              <Typography variant="h5" fontWeight={700}>10K+</Typography>
+              <Typography variant="body2">Students</Typography>
+            </Box>
+
+            <Box>
+              <Typography variant="h5" fontWeight={700}>50+</Typography>
+              <Typography variant="body2">Teachers</Typography>
+            </Box>
+
+            <Box>
+              <Typography variant="h5" fontWeight={700}>98%</Typography>
+              <Typography variant="body2">Success</Typography>
+            </Box>
+          </Stack>
+
+        </Box>
+      </Grid>
+
+      {/* RIGHT SIDE */}
+      <Grid 
+        item 
+        xs={12} 
+        md={6}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          px: { xs: 2, md: 6 },
+        }}
+      >
+        <Box
+          sx={{
+            width: '90%',
+            maxWidth: 500,
+            borderRadius: 4,
+            overflow: 'hidden',
+            boxShadow: 6,
+            position: 'relative',
+          }}
+        >
+          <Box
+            component="img"
+            src={homeImage}
+            alt="Pro Kidz"
+            sx={{
+              width: '100%',
+              height: 'auto',
+              objectFit: 'cover',
+              transition: '0.4s',
+              '&:hover': {
+                transform: 'scale(1.05)',
+              }
+            }}
+          />
+
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 15,
+              left: 15,
+              bgcolor: alpha('#000', 0.6),
+              color: '#fff',
+              px: 2,
+              py: 1,
+              borderRadius: 2,
+              fontSize: 14,
+            }}
+          >
+            ⭐ Trusted by 10,000+ Parents
+          </Box>
+        </Box>
+      </Grid>
+
+    </Grid>
+  </Box>
+
+  {/* Decorative Elements (behind content) */}
+  <Box
+    sx={{
+      position: 'absolute',
+      bottom: -50,
+      left: -50,
+      width: 200,
+      height: 200,
+      borderRadius: '50%',
+      bgcolor: alpha(colors.yellow, 0.2),
+      zIndex: 1,
+    }}
+  />
+  <Box
+    sx={{
+      position: 'absolute',
+      top: -30,
+      right: -30,
+      width: 150,
+      height: 150,
+      borderRadius: '50%',
+      bgcolor: alpha(colors.pink, 0.2),
+      zIndex: 1,
+    }}
+  />
+</Box>
+
+      {/* Features Section */}
+    <Container sx={{ py: 6 }}>
+
+  {/* HEADER SAME */}
+
+  <Box sx={{ overflowX: 'auto' }}>
+    <Grid 
+      container 
+      spacing={2} 
+      sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' } }} // 👈 desktop pe single row
+    >
+      {features.map((feature, index) => (
+        <Grid 
+          item 
+          xs={6} 
+          sm={4} 
+          md={2.4}   // 👈 approx 5 cards feel (works visually)
+          key={index}
+          sx={{ minWidth: { md: 180 } }} // 👈 important for row
+        >
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: index * 0.05, duration: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <Card 
+              sx={{ 
+                textAlign: 'center', 
+                py: 2,      // 👈 reduced
+                px: 1.5,    // 👈 reduced
+                height: '100%',
+                borderRadius: 3,
+                transition: '0.3s',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: 4,
+                },
+                borderTop: `3px solid ${feature.color}`,
+              }}
+            >
+              <CardContent sx={{ p: '8px !important' }}>
+                
+                {/* Icon */}
+                <Box 
                   sx={{ 
-                    textAlign: 'center', 
-                    py: 4, 
-                    px: 2,
-                    height: '100%',
-                    transition: 'transform 0.3s, box-shadow 0.3s',
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: 6,
-                    },
-                    cursor: 'pointer',
-                    borderTop: `4px solid ${feature.color}`,
+                    mb: 1,
+                    display: 'inline-flex',
+                    p: 1.2,   // 👈 smaller
+                    borderRadius: '50%',
+                    background: alpha(feature.color, 0.1),
+                    color: feature.color,
+                    fontSize: 20
                   }}
                 >
-                  <CardContent>
-                    <Box 
-                      sx={{ 
-                        mb: 2,
-                        display: 'inline-flex',
-                        p: 2,
-                        borderRadius: '50%',
-                        background: alpha(feature.color, 0.1),
-                        color: feature.color,
-                      }}
-                    >
-                      {feature.icon}
-                    </Box>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                      {feature.title}
-                    </Typography>
-                    <Typography color="text.secondary" variant="body2">
-                      {feature.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Grid>
-          ))}
+                  {feature.icon}
+                </Box>
+
+                {/* Title */}
+                <Typography 
+                  variant="subtitle1" 
+                  sx={{ fontWeight: 600, mb: 0.5 }}
+                >
+                  {feature.title}
+                </Typography>
+
+                {/* Description */}
+                <Typography 
+                  color="text.secondary" 
+                  variant="caption"   // 👈 smaller text
+                >
+                  {feature.description}
+                </Typography>
+
+              </CardContent>
+            </Card>
+          </motion.div>
         </Grid>
-      </Container>
+      ))}
+    </Grid>
+  </Box>
+
+</Container>
 
       {/* Programs Section */}
-      <Box sx={{ bgcolor: alpha(colors.pink, 0.05), py: 8 }}>
-        <Container>
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <Chip 
-              label="Our Programs" 
-              sx={{ 
-                bgcolor: alpha(colors.yellow, 0.2), 
-                color: colors.yellowDark,
-                mx: 'auto',
-                display: 'table',
-                mb: 2,
-                fontWeight: 600
-              }} 
-            />
-            <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.pink }}>
-              Our Programs
-            </Typography>
-            <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6 }}>
-              Age-appropriate curriculum designed for every stage
-            </Typography>
-          </motion.div>
+   <Box sx={{ bgcolor: alpha(colors.pink, 0.05), py: 6 }}>
+  <Container>
 
-          <Grid container spacing={4}>
-            {programs.map((program, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
+    {/* HEADER SAME */}
+
+    <Box sx={{ overflowX: 'auto' }}>
+      <Grid 
+        container 
+        spacing={2}
+        sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' } }} // 👈 single row desktop
+      >
+        {programs.map((program, index) => (
+          <Grid 
+            item 
+            xs={6} 
+            sm={4} 
+            md={2.4}   // 👈 compact width feel
+            key={index}
+            sx={{ minWidth: { md: 190 } }} // 👈 important
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card 
+                sx={{ 
+                  textAlign: 'center',
+                  height: '100%',
+                  borderRadius: 3,
+                  p: 1, // 👈 reduced padding
+                  transition: '0.3s',
+                  '&:hover': {
+                    transform: 'translateY(-5px)',
+                    boxShadow: 4,
+                  }
+                }}
+              >
+
+                {/* Level Tag */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: -10,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    bgcolor: program.color,
+                    color: 'white',
+                    px: 1.5,
+                    py: 0.3,
+                    borderRadius: 2,
+                    fontWeight: 600,
+                    fontSize: 12, // 👈 smaller
+                  }}
                 >
-                  <Card 
+                  {program.level}
+                </Box>
+
+                <CardContent sx={{ p: '10px !important', mt: 2 }}>
+
+                  {/* Age */}
+                  <Typography 
+                    variant="h6"   // 👈 smaller
+                    sx={{ color: program.color, fontWeight: 700, mb: 0.5 }}
+                  >
+                    {program.age}
+                  </Typography>
+
+                  {/* Duration */}
+                  <Typography 
+                    variant="caption" 
+                    color="text.secondary"
+                  >
+                    {program.duration}
+                  </Typography>
+
+                  <Divider sx={{ my: 1 }} />
+
+                  {/* Description */}
+                  <Typography 
+                    variant="caption"   // 👈 compact text
+                    sx={{ display: 'block', mb: 1 }}
+                  >
+                    {program.description}
+                  </Typography>
+
+                  {/* Button */}
+                  <Button 
+                    variant="outlined" 
+                    size="small"
                     sx={{ 
-                      textAlign: 'center',
-                      height: '100%',
-                      position: 'relative',
-                      overflow: 'visible',
+                      borderColor: program.color,
+                      color: program.color,
+                      fontSize: 11,
+                      py: 0.3,
+                      '&:hover': { bgcolor: alpha(program.color, 0.1) }
                     }}
                   >
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: -15,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        bgcolor: program.color,
-                        color: 'white',
-                        px: 2,
-                        py: 0.5,
-                        borderRadius: 2,
-                        fontWeight: 600,
-                        fontSize: 14,
-                      }}
-                    >
-                      {program.level}
-                    </Box>
-                    <CardContent sx={{ mt: 3 }}>
-                      <Typography variant="h4" sx={{ color: program.color, fontWeight: 700, mb: 1 }}>
-                        {program.age}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        Duration: {program.duration}
-                      </Typography>
-                      <Divider sx={{ my: 2 }} />
-                      <Typography variant="body2" paragraph>
-                        {program.description}
-                      </Typography>
-                      <Button 
-                        variant="outlined" 
-                        size="small"
-                        sx={{ 
-                          borderColor: program.color,
-                          color: program.color,
-                          '&:hover': { bgcolor: alpha(program.color, 0.1) }
-                        }}
-                      >
-                        Learn More →
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
+                    Learn →
+                  </Button>
+
+                </CardContent>
+              </Card>
+            </motion.div>
           </Grid>
-        </Container>
-      </Box>
+        ))}
+      </Grid>
+    </Box>
+
+  </Container>
+</Box>
 
       {/* Stats Section */}
-      <Box sx={{ py: 8 }}>
-        <Container>
-          <Grid container spacing={4} textAlign="center">
-            <Grid item xs={12} sm={6} md={3}>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <Paper sx={{ p: 3, bgcolor: alpha(colors.orange, 0.1), borderBottom: `4px solid ${colors.orange}` }}>
-                  <Typography variant="h2" sx={{ fontWeight: 700, color: colors.orange }}>
-                    10,000+
-                  </Typography>
-                  <Typography variant="h6">Happy Students</Typography>
-                </Paper>
-              </motion.div>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <Paper sx={{ p: 3, bgcolor: alpha(colors.yellow, 0.1), borderBottom: `4px solid ${colors.yellow}` }}>
-                  <Typography variant="h2" sx={{ fontWeight: 700, color: colors.yellowDark }}>
-                    50+
-                  </Typography>
-                  <Typography variant="h6">Expert Teachers</Typography>
-                </Paper>
-              </motion.div>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Paper sx={{ p: 3, bgcolor: alpha(colors.pink, 0.1), borderBottom: `4px solid ${colors.pink}` }}>
-                  <Typography variant="h2" sx={{ fontWeight: 700, color: colors.pink }}>
-                    98%
-                  </Typography>
-                  <Typography variant="h6">Success Rate</Typography>
-                </Paper>
-              </motion.div>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Paper sx={{ p: 3, bgcolor: alpha(colors.orange, 0.1), borderBottom: `4px solid ${colors.orange}` }}>
-                  <Typography variant="h2" sx={{ fontWeight: 700, color: colors.orange }}>
-                    25+
-                  </Typography>
-                  <Typography variant="h6">Awards Won</Typography>
-                </Paper>
-              </motion.div>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
+     <Box sx={{ py: 6 }}>
+  <Container>
+
+    <Box sx={{ overflowX: 'auto' }}>
+      <Grid 
+        container 
+        spacing={2}
+        sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' } }} // 👈 desktop single row
+      >
+
+        {/* CARD 1 */}
+        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <Paper 
+              sx={{ 
+                p: 2,   // 👈 reduced
+                textAlign: 'center', 
+                bgcolor: alpha(colors.orange, 0.1), 
+                borderBottom: `3px solid ${colors.orange}`,
+                borderRadius: 3
+              }}
+            >
+              <Typography variant="h5" fontWeight={700} color={colors.orange}>
+                10,000+
+              </Typography>
+              <Typography variant="body2">Students</Typography>
+            </Paper>
+          </motion.div>
+        </Grid>
+
+        {/* CARD 2 */}
+        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <Paper 
+              sx={{ 
+                p: 2, 
+                textAlign: 'center', 
+                bgcolor: alpha(colors.yellow, 0.1), 
+                borderBottom: `3px solid ${colors.yellow}`,
+                borderRadius: 3
+              }}
+            >
+              <Typography variant="h5" fontWeight={700} color={colors.yellowDark}>
+                50+
+              </Typography>
+              <Typography variant="body2">Teachers</Typography>
+            </Paper>
+          </motion.div>
+        </Grid>
+
+        {/* CARD 3 */}
+        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
+            <Paper 
+              sx={{ 
+                p: 2, 
+                textAlign: 'center', 
+                bgcolor: alpha(colors.pink, 0.1), 
+                borderBottom: `3px solid ${colors.pink}`,
+                borderRadius: 3
+              }}
+            >
+              <Typography variant="h5" fontWeight={700} color={colors.pink}>
+                98%
+              </Typography>
+              <Typography variant="body2">Success</Typography>
+            </Paper>
+          </motion.div>
+        </Grid>
+
+        {/* CARD 4 */}
+        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <Paper 
+              sx={{ 
+                p: 2, 
+                textAlign: 'center', 
+                bgcolor: alpha(colors.orange, 0.1), 
+                borderBottom: `3px solid ${colors.orange}`,
+                borderRadius: 3
+              }}
+            >
+              <Typography variant="h5" fontWeight={700} color={colors.orange}>
+                25+
+              </Typography>
+              <Typography variant="body2">Awards</Typography>
+            </Paper>
+          </motion.div>
+        </Grid>
+
+      </Grid>
+    </Box>
+
+  </Container>
+</Box>
 
       {/* Testimonials Section */}
-      <Box sx={{ bgcolor: alpha(colors.yellow, 0.05), py: 8 }}>
-        <Container>
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <Chip 
-              label="Testimonials" 
+     <Grid container spacing={4}>
+  {testimonials.map((testimonial, index) => (
+    <Grid item xs={12} sm={6} md={6} key={index}>
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <Card 
+          sx={{ 
+            p: 2.5,   // 👈 thoda compact
+            height: '100%', 
+            position: 'relative', 
+            bgcolor: alpha(colors.orange, 0.02),
+            borderRadius: 3,
+            transition: '0.3s',
+            '&:hover': {
+              transform: 'translateY(-5px)',
+              boxShadow: 4,
+            }
+          }}
+        >
+          <FormatQuoteIcon 
+            sx={{ 
+              fontSize: 50, 
+              color: alpha(colors.orange, 0.2),
+              position: 'absolute',
+              top: 10,
+              right: 15,
+            }} 
+          />
+
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <Avatar 
+              src={testimonial.image} 
               sx={{ 
-                bgcolor: alpha(colors.pink, 0.1), 
-                color: colors.pink,
-                mx: 'auto',
-                display: 'table',
-                mb: 2,
-                fontWeight: 600
+                width: 50, 
+                height: 50, 
+                mr: 2, 
+                border: `2px solid ${colors.orange}` 
               }} 
             />
-            <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.orange }}>
-              What Parents Say
-            </Typography>
-            <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6 }}>
-              Hear from our happy families
-            </Typography>
-          </motion.div>
+            <Box>
+              <Typography variant="subtitle1" fontWeight={600}>
+                {testimonial.name}
+              </Typography>
+              <Typography variant="caption" color="text.secondary">
+                {testimonial.childName}
+              </Typography>
+            </Box>
+          </Box>
 
-          <Grid container spacing={4}>
-            {testimonials.map((testimonial, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card sx={{ p: 3, height: '100%', position: 'relative', bgcolor: alpha(colors.orange, 0.02) }}>
-                    <FormatQuoteIcon 
-                      sx={{ 
-                        fontSize: 60, 
-                        color: alpha(colors.orange, 0.2),
-                        position: 'absolute',
-                        top: 10,
-                        right: 20,
-                      }} 
-                    />
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <Avatar src={testimonial.image} sx={{ width: 60, height: 60, mr: 2, border: `2px solid ${colors.orange}` }} />
-                      <Box>
-                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                          {testimonial.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {testimonial.childName}
-                        </Typography>
-                      </Box>
-                    </Box>
-                    <Rating value={testimonial.rating} readOnly sx={{ mb: 2 }} />
-                    <Typography variant="body1" sx={{ fontStyle: 'italic' }}>
-                      "{testimonial.text}"
-                    </Typography>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
+          <Rating value={testimonial.rating} readOnly size="small" sx={{ mb: 1 }} />
 
-      {/* CTA Section with Yellow Background */}
+          <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
+            "{testimonial.text}"
+          </Typography>
+
+        </Card>
+      </motion.div>
+    </Grid>
+  ))}
+</Grid>
+
+      {/* CTA Section */}
       <Container sx={{ py: 8 }}>
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           <Paper
             sx={{
@@ -672,7 +768,7 @@ const Home = () => {
               borderRadius: 4,
             }}
           >
-            <Typography variant="h3" gutterBottom sx={{ fontWeight: 700 }}>
+            <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '1.8rem', md: '3rem' } }}>
               Ready to Start Your Journey?
             </Typography>
             <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
