@@ -33,6 +33,14 @@ import CelebrationIcon from "@mui/icons-material/Celebration";
 import BoltIcon from "@mui/icons-material/Bolt";
 import TouchAppIcon from "@mui/icons-material/TouchApp";
 import homeImage from "../assets/home1.png";
+import image from "../assets/8.png";
+import img1 from '../assets/img1.png'; 
+import img2 from '../assets/img2.png'; 
+import img3 from '../assets/img3.png'; 
+import img4 from '../assets/img4.png'; 
+import img5 from '../assets/img5.png'; 
+import img6 from '../assets/img6.png'; 
+
 
 // Color Palette
 const colors = {
@@ -163,12 +171,13 @@ const Home = () => {
   ];
 
  const testimonials = [
+  
   {
     name: "Rajesh Sharma",
     childName: "Aarav Sharma, Grade 5",
     rating: 5,
     text: "My son's math grades improved from C to A+ in just 6 months. Amazing transformation!",
-    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    // image: "https://randomuser.me/api/portraits/men/1.jpg",
     location: "Mumbai"
   },
   {
@@ -176,7 +185,7 @@ const Home = () => {
     childName: "Kavya Patel, Grade 4",
     rating: 5,
     text: "Best decision we made for our daughter. She now loves math and participates in competitions.",
-    image: "https://randomuser.me/api/portraits/women/2.jpg",
+    // image: "https://randomuser.me/api/portraits/women/2.jpg",
     location: "Delhi"
   },
   {
@@ -184,7 +193,7 @@ const Home = () => {
     childName: "Rohan Kumar, Grade 6",
     rating: 5,
     text: "Structured curriculum and amazing teachers make Pro Kidz stand out. Highly recommended!",
-    image: "https://randomuser.me/api/portraits/men/3.jpg",
+    // image: "https://randomuser.me/api/portraits/men/3.jpg",
     location: "Bangalore"
   },
   {
@@ -192,7 +201,7 @@ const Home = () => {
     childName: "Ananya Gupta, Grade 3",
     rating: 5,
     text: "My daughter's confidence has skyrocketed. She solves complex problems mentally now!",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    // image: "https://randomuser.me/api/portraits/women/4.jpg",
     location: "Pune"
   },
   {
@@ -200,7 +209,7 @@ const Home = () => {
     childName: "Arjun Singh, Grade 7",
     rating: 5,
     text: "Excellent teaching methodology. My son's calculation speed increased by 10x.",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
+    // image: "https://randomuser.me/api/portraits/men/5.jpg",
     location: "Jaipur"
   },
   {
@@ -208,7 +217,7 @@ const Home = () => {
     childName: "Sahil Reddy, Grade 5",
     rating: 5,
     text: "Worth every penny! My child enjoys math now and grades have improved significantly.",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    // image: "https://randomuser.me/api/portraits/women/6.jpg",
     location: "Hyderabad"
   },
   {
@@ -216,7 +225,7 @@ const Home = () => {
     childName: "Ishita Mehta, Grade 4",
     rating: 5,
     text: "The best investment in my child's future. Highly professional and caring teachers.",
-    image: "https://randomuser.me/api/portraits/men/7.jpg",
+    // image: "https://randomuser.me/api/portraits/men/7.jpg",
     location: "Ahmedabad"
   },
   {
@@ -224,7 +233,7 @@ const Home = () => {
     childName: "Vedant Joshi, Grade 6",
     rating: 5,
     text: "Amazing results in just 3 months! My son's concentration has improved tremendously.",
-    image: "https://randomuser.me/api/portraits/women/8.jpg",
+    // image: "https://randomuser.me/api/portraits/women/8.jpg",
     location: "Chennai"
   },
   {
@@ -232,7 +241,7 @@ const Home = () => {
     childName: "Nikhil Nair, Grade 5",
     rating: 5,
     text: "Pro Kidz changed my son's attitude towards math. Now he loves solving problems!",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
+    // image: "https://randomuser.me/api/portraits/men/9.jpg",
     location: "Kochi"
   }
 ];
@@ -310,6 +319,7 @@ const Home = () => {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
   };
+  const testimonialImages = [img1, img3, img2, img4, img5, img6];
 
   return (
     <Box sx={{ bgcolor: colors.lightGray }}>
@@ -1006,6 +1016,11 @@ const Home = () => {
 </Container>
 
     
+
+
+
+
+// Testimonials Section
 <Box sx={{ bgcolor: colors.pastelGreen, py: { xs: 6, sm: 8, md: 10 } }}>
   <Container maxWidth="xl">
     <motion.div
@@ -1038,13 +1053,13 @@ const Home = () => {
       </Typography>
     </motion.div>
 
-    {/* Fixed Width Grid - 3 in a row */}
+    {/* Fixed Width Grid - 3 in a row with images */}
     <Box
       sx={{
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        gap: { xs: 2, sm: 3, md: 5 },
+        gap: { xs: 2, sm: 3, md: 6 },
       }}
     >
       {testimonials.slice(0, 6).map((testimonial, index) => (
@@ -1057,7 +1072,7 @@ const Home = () => {
           transition={{ delay: (index % 3) * 0.1, duration: 0.5 }}
           style={{
             width: '100%',
-            maxWidth: '400px',
+            maxWidth: '380px',
             flex: '0 0 auto',
           }}
         >
@@ -1065,9 +1080,8 @@ const Home = () => {
             sx={{
               p: { xs: 2, sm: 2.5, md: 3 },
               height: "100%",
-              minHeight: { xs: 'auto', md: 260 },
+              minHeight: { xs: 'auto', md: 280 },
               width: '100%',
-              maxWidth: '380px',
               position: "relative",
               borderBottom: `4px solid ${colors.orange}`,
               borderRadius: 3,
@@ -1081,26 +1095,38 @@ const Home = () => {
               },
             }}
           >
+
+
             <FormatQuoteIcon
               sx={{
                 fontSize: { xs: 40, sm: 50, md: 60 },
                 color: alpha(colors.orange, 0.15),
                 position: "absolute",
-                top: 12,
+                top: 100,
                 right: 16,
               }}
             />
             
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-              <Avatar
-                src={testimonial.image}
-                sx={{
-                  width: { xs: 48, sm: 52, md: 56 },
-                  height: { xs: 48, sm: 52, md: 56 },
-                  mr: 2,
-                  border: `3px solid ${colors.orange}`,
+               <Box
+              sx={{
+                width: '100%',
+                height: '120px',
+                overflow: 'hidden',
+                borderRadius: 2,
+                mb: 2,
+              }}
+            >
+              <img
+                src={testimonialImages[index]}
+                alt={`testimonial ${index + 1}`}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
                 }}
               />
+            </Box>
               <Box>
                 <Typography 
                   variant="subtitle1" 
@@ -1155,72 +1181,61 @@ const Home = () => {
         </motion.div>
       ))}
     </Box>
-
-  
   </Container>
 </Box>
 
 
-      {/* CTA Section */}
-  <Container maxWidth="xl" sx={{ py: { xs: 6, sm: 8, md: 10 } }}>
-  <Box sx={{ display: 'flex', justifyContent: 'center', px: { xs: 2, sm: 3 } }}>
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={scaleIn}
-      transition={{ duration: 0.6 }}
-      whileHover={{ scale: 1.01 }}
-      style={{ width: '100%', maxWidth: '1000px' }}
-    >
-      <Paper
-        elevation={0}
-        sx={{
-          p: { xs: 3, sm: 4, md: 5 },
-          bgcolor: colors.orange,
-          textAlign: "center",
-          borderRadius: { xs: 3, sm: 4, md: 5 },
-          position: "relative",
-          overflow: "hidden",
-          boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-          width: '100%',
-          border: `1px solid ${alpha(colors.white, 0.2)}`,
-        }}
-      >
-        {/* Decorative Circles */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: -80,
-            right: -80,
-            width: 200,
-            height: 200,
-            borderRadius: '50%',
-            background: alpha(colors.yellow, 0.15),
-          }}
-        />
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: -80,
-            left: -80,
-            width: 200,
-            height: 200,
-            borderRadius: '50%',
-            background: alpha(colors.yellow, 0.15),
-          }}
-        />
 
-        {/* Content */}
-        <Box sx={{ position: 'relative', zIndex: 2 }}>
+      {/* CTA Section */}
+<Container maxWidth="xl" sx={{ py: { xs: 6, sm: 8, md: 10 } }}>
+  <Grid container spacing={4} alignItems="center">
+    {/* Images Left Side - Two Images */}
+    <Grid item xs={12} md={6}>
+      <Grid container spacing={2}>
+       
+        <Grid item xs={12}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeLeft}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Box
+              sx={{
+                borderRadius: 4,
+                overflow: 'hidden',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+              }}
+            >
+              <img
+                src={image}
+                alt="Practice Today Perform Tomorrow"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </Box>
+          </motion.div>
+        </Grid>
+      </Grid>
+    </Grid>
+
+    {/* Text Right Side */}
+    <Grid item xs={12} md={6}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeRight}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <Box sx={{ pl: { xs: 0, md: 4 } }}>
           <Typography
             variant="h3"
-            gutterBottom
             sx={{
               fontWeight: 800,
-              color: colors.white,
-              fontSize: { xs: "1.6rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
-              textAlign: 'center',
+              color: colors.orange,
+              fontSize: { xs: "1.8rem", sm: "2.2rem", md: "2.5rem", lg: "3rem" },
+              mb: 2,
             }}
           >
             🚀 Ready to Start Your Journey?
@@ -1230,133 +1245,68 @@ const Home = () => {
             variant="h6"
             sx={{ 
               mb: 4, 
-              color: alpha(colors.white, 0.95),
-              fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.2rem' },
-              textAlign: 'center',
-              maxWidth: '700px',
-              mx: 'auto',
-              px: 2
+              color: colors.gray,
+              fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
             }}
           >
-            🌟 Join 50,000+ happy students who have transformed their mathematical abilities 🌟
+            🌟 Join 50,000+ happy students who have transformed their mathematical abilities
           </Typography>
           
-         <Stack
-  direction={{ xs: "column", sm: "row" }}
-  spacing={2.5}
-  display="flex"
-  justifyContent="center"
-  alignItems="center"
-  sx={{ mb: 4, width: '100%' }}
->
-  <Button
-    variant="contained"
-    size="large"
-    startIcon={<CelebrationIcon />}
-    sx={{
-      bgcolor: colors.white,
-      color: colors.orange,
-      px: 4,
-      py: 1.3,
-      fontWeight: 800,
-      fontSize: '0.95rem',
-      borderRadius: 4,
-      minWidth: '200px',
-      textAlign: 'center',
-      '&:hover': { 
-        bgcolor: colors.white,
-        opacity: 0.95,
-        transform: 'translateY(-3px)',
-        boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-      },
-    }}
-  >
-    🎉 Get Started Today
-  </Button>
-  <Button
-    variant="outlined"
-    size="large"
-    startIcon={<TouchAppIcon />}
-    sx={{
-      color: colors.white,
-      borderColor: colors.white,
-      px: 4,
-      py: 1.3,
-      borderRadius: 4,
-      minWidth: '200px',
-      textAlign: 'center',
-      '&:hover': { 
-        bgcolor: alpha(colors.white, 0.15),
-        transform: 'translateY(-3px)',
-        borderColor: colors.white,
-      },
-    }}
-  >
-    📞 Book Free Demo
-  </Button>
-</Stack>
-
-<Stack
-  direction={{ xs: "column", sm: "row" }}
-  spacing={2}
-  justifyContent="center"
-  alignItems="center"
-  sx={{ 
-    flexWrap: 'wrap', 
-    gap: 1.5, 
-    width: '100%',
-    '& .MuiChip-root': {
-      margin: '0 auto'
-    }
-  }}
->
-  <Chip
-    label="✅ 100% Money Back Guarantee"
-    sx={{ 
-      bgcolor: alpha(colors.white, 0.15), 
-      color: colors.white,
-      fontWeight: 500,
-      '&:hover': { bgcolor: alpha(colors.white, 0.25) },
-      display: 'inline-flex',
-    }}
-  />
-  <Chip
-    label="🎓 ISO Certified Course"
-    sx={{ 
-      bgcolor: alpha(colors.white, 0.15), 
-      color: colors.white,
-      fontWeight: 500,
-      '&:hover': { bgcolor: alpha(colors.white, 0.25) },
-      display: 'inline-flex',
-    }}
-  />
-  <Chip
-    label="🏆 India's Top Academy"
-    sx={{ 
-      bgcolor: alpha(colors.white, 0.15), 
-      color: colors.white,
-      fontWeight: 500,
-      '&:hover': { bgcolor: alpha(colors.white, 0.25) },
-      display: 'inline-flex',
-    }}
-  />
-</Stack>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+            <Button
+              variant="contained"
+              size="large"
+              startIcon={<CelebrationIcon />}
+              sx={{
+                bgcolor: colors.orange,
+                color: colors.white,
+                px: 4,
+                py: 1.2,
+                fontWeight: 700,
+                borderRadius: 3,
+                '&:hover': { 
+                  bgcolor: colors.darkOrange,
+                  transform: 'translateY(-2px)',
+                },
+              }}
+            >
+              🎉 Get Started Today
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              startIcon={<TouchAppIcon />}
+              sx={{
+                color: colors.orange,
+                borderColor: colors.orange,
+                px: 4,
+                py: 1.2,
+                fontWeight: 700,
+                borderRadius: 3,
+                '&:hover': { 
+                  bgcolor: alpha(colors.orange, 0.1),
+                  transform: 'translateY(-2px)',
+                },
+              }}
+            >
+              📞 Book Free Demo
+            </Button>
+          </Stack>
 
           <Typography
             variant="body2"
             sx={{ 
-              mt: 3,
-              color: alpha(colors.white, 0.7),
-              fontSize: { xs: '0.7rem', sm: '0.75rem' },
+              mt: 4,
+              color: colors.gray,
               textAlign: 'center',
             }}
           >
-            ⚡ Limited seats available for this batch • No hidden charges • Free demo class included
+            ⚡ Limited seats available • No hidden charges • Free demo class
           </Typography>
         </Box>
-      </Paper>
-    </motion.div>
-  </Box>
+      </motion.div>
+    </Grid>
+  </Grid>
 </Container>
 
       {/* Floating Action Button */}
