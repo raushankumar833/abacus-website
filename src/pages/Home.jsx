@@ -1,4 +1,5 @@
-import React from 'react';
+// pages/Home.jsx
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -7,801 +8,1377 @@ import {
   Grid,
   Card,
   CardContent,
-  CardMedia,
   Chip,
   Avatar,
-  useTheme,
   alpha,
   Stack,
-  Divider,
   Paper,
   Rating,
   IconButton,
-} from '@mui/material';
-import { motion } from 'framer-motion';
-import SpeedIcon from '@mui/icons-material/Speed';
-import MemoryIcon from '@mui/icons-material/Memory';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
-import SchoolIcon from '@mui/icons-material/School';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import GroupsIcon from '@mui/icons-material/Groups';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
-import StarIcon from '@mui/icons-material/Star';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-// Make sure this path is correct for your project structure
-import homeImage from '../assets/home1.png'; 
+} from "@mui/material";
+import { motion, useMotionValue, animate } from "framer-motion";
+import SpeedIcon from "@mui/icons-material/Speed";
+import MemoryIcon from "@mui/icons-material/Memory";
+import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
+import SchoolIcon from "@mui/icons-material/School";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import PsychologyIcon from "@mui/icons-material/Psychology";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import CelebrationIcon from "@mui/icons-material/Celebration";
+import BoltIcon from "@mui/icons-material/Bolt";
+import TouchAppIcon from "@mui/icons-material/TouchApp";
+import homeImage from "../assets/home1.png";
+
+// Color Palette
+const colors = {
+  orange: "#FF6B35",
+  darkOrange: "#E85D2C",
+  lightOrange: "#FF8A5C",
+  pastelOrange: "#FFF2EC",
+  green: "#4CAF50",
+  darkGreen: "#388E3C",
+  lightGreen: "#66BB6A",
+  pastelGreen: "#E8F5E9",
+  blue: "#2196F3",
+  darkBlue: "#1976D2",
+  lightBlue: "#42A5F5",
+  pastelBlue: "#E3F2FD",
+  yellow: "#FFC107",
+  white: "#FFFFFF",
+  black: "#2D2D2D",
+  gray: "#656565",
+  lightGray: "#F8F9FA",
+};
+
+// Animated Counter Component
+const AnimatedCounter = ({ value, suffix = "" }) => {
+  const count = useMotionValue(0);
+  const [roundedCount, setRoundedCount] = useState(0);
+
+  useEffect(() => {
+    const animation = animate(count, value, { duration: 2, ease: "easeOut" });
+    const unsubscribe = count.on("change", (latest) =>
+      setRoundedCount(Math.round(latest)),
+    );
+    return () => {
+      animation.stop();
+      unsubscribe();
+    };
+  }, [count, value]);
+
+  return (
+    <span>
+      {roundedCount}
+      {suffix}
+    </span>
+  );
+};
 
 const Home = () => {
-  // Brand Colors
-  const colors = {
-    orange: '#FF6B35',
-    orangeLight: '#FF8A5C',
-    orangeDark: '#E55A2B',
-    yellow: '#FFD700',
-    yellowLight: '#FFE44D',
-    yellowDark: '#FFC107',
-    pink: '#FF69B4',
-    pinkLight: '#FFB6C1',
-    pinkDark: '#FF1493',
-  };
-
+  // Data Arrays
   const features = [
     {
-      icon: <SpeedIcon sx={{ fontSize: 48 }} />,
-      title: 'Fast Calculation',
-      description: 'Improve calculation speed by 5-10x with proven abacus techniques',
+      icon: <SpeedIcon sx={{ fontSize: 40 }} />,
+      title: "Fast Calculation",
+      description:
+        "Improve calculation speed by 5-10x with proven abacus techniques",
       color: colors.orange,
+      bgColor: colors.pastelOrange,
     },
     {
-      icon: <MemoryIcon sx={{ fontSize: 48 }} />,
-      title: 'Better Memory',
-      description: 'Enhance photographic memory and concentration power',
-      color: colors.yellow,
+      icon: <MemoryIcon sx={{ fontSize: 40 }} />,
+      title: "Better Memory",
+      description: "Enhance photographic memory and concentration power",
+      color: colors.green,
+      bgColor: colors.pastelGreen,
     },
     {
-      icon: <EmojiObjectsIcon sx={{ fontSize: 48 }} />,
-      title: 'Logical Thinking',
-      description: 'Develop analytical and problem-solving skills',
-      color: colors.pink,
+      icon: <EmojiObjectsIcon sx={{ fontSize: 40 }} />,
+      title: "Logical Thinking",
+      description: "Develop analytical and problem-solving skills",
+      color: colors.blue,
+      bgColor: colors.pastelBlue,
     },
     {
-      icon: <SchoolIcon sx={{ fontSize: 48 }} />,
-      title: 'Certified Courses',
-      description: 'Internationally recognized certification',
+      icon: <SchoolIcon sx={{ fontSize: 40 }} />,
+      title: "Certified Courses",
+      description: "Internationally recognized certification",
       color: colors.orange,
+      bgColor: colors.pastelOrange,
     },
     {
-      icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
-      title: 'Performance Tracking',
-      description: 'Regular assessments and progress reports',
-      color: colors.yellow,
+      icon: <TrendingUpIcon sx={{ fontSize: 40 }} />,
+      title: "Performance Tracking",
+      description: "Regular assessments and progress reports",
+      color: colors.green,
+      bgColor: colors.pastelGreen,
     },
     {
-      icon: <PsychologyIcon sx={{ fontSize: 48 }} />,
-      title: 'Brain Development',
-      description: 'Boost overall cognitive abilities',
-      color: colors.pink,
-    },
-    {
-      icon: <GroupsIcon sx={{ fontSize: 48 }} />,
-      title: 'Small Batches',
-      description: 'Personalized attention to each student',
-      color: colors.orange,
-    },
-    {
-      icon: <WorkspacePremiumIcon sx={{ fontSize: 48 }} />,
-      title: 'Expert Trainers',
-      description: 'Certified and experienced teachers',
-      color: colors.yellow,
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Rajesh Sharma',
-      childName: 'Aarav Sharma, Grade 5',
-      rating: 5,
-      text: 'My son\'s math grades improved from C to A+ in just 6 months. The abacus training has done wonders for his concentration!',
-      image: 'https://randomuser.me/api/portraits/men/1.jpg',
-    },
-    {
-      name: 'Priya Patel',
-      childName: 'Kavya Patel, Grade 4',
-      rating: 5,
-      text: 'Best decision we made for our daughter. She now loves math and participates in competitions confidently.',
-      image: 'https://randomuser.me/api/portraits/women/2.jpg',
-    },
-    {
-      name: 'Amit Kumar',
-      childName: 'Rohan Kumar, Grade 6',
-      rating: 5,
-      text: 'The structured curriculum and amazing teachers make Pro Kidz stand out. Highly recommended!',
-      image: 'https://randomuser.me/api/portraits/men/3.jpg',
+      icon: <PsychologyIcon sx={{ fontSize: 40 }} />,
+      title: "Brain Development",
+      description: "Boost overall cognitive abilities",
+      color: colors.blue,
+      bgColor: colors.pastelBlue,
     },
   ];
 
   const programs = [
     {
-      level: 'Beginner',
-      age: '5-7 Years',
-      duration: '3 Months',
-      description: 'Introduction to abacus, basic addition & subtraction',
+      level: "Beginner",
+      age: "5-7 Years",
+      duration: "3 Months",
+      description: "Introduction to abacus, basic addition & subtraction",
+      color: colors.green,
+      icon: <MenuBookIcon />,
+    },
+    {
+      level: "Intermediate",
+      age: "7-9 Years",
+      duration: "4 Months",
+      description: "Multiplication, division, and mental math",
       color: colors.orange,
+      icon: <BoltIcon />,
     },
     {
-      level: 'Intermediate',
-      age: '7-9 Years',
-      duration: '4 Months',
-      description: 'Multiplication, division, and mental math',
-      color: colors.yellow,
+      level: "Advanced",
+      age: "9-12 Years",
+      duration: "6 Months",
+      description: "Complex calculations, competition training",
+      color: colors.blue,
+      icon: <EmojiEventsIcon />,
     },
     {
-      level: 'Advanced',
-      age: '9-12 Years',
-      duration: '6 Months',
-      description: 'Complex calculations, competition training',
-      color: colors.pink,
-    },
-    {
-      level: 'Expert',
-      age: '12+ Years',
-      duration: '8 Months',
-      description: 'Master level with Vedic math integration',
-      color: colors.orange,
+      level: "Expert",
+      age: "12+ Years",
+      duration: "8 Months",
+      description: "Master level with Vedic math integration",
+      color: colors.green,
+      icon: <CelebrationIcon />,
     },
   ];
 
+ const testimonials = [
+  {
+    name: "Rajesh Sharma",
+    childName: "Aarav Sharma, Grade 5",
+    rating: 5,
+    text: "My son's math grades improved from C to A+ in just 6 months. Amazing transformation!",
+    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    location: "Mumbai"
+  },
+  {
+    name: "Priya Patel",
+    childName: "Kavya Patel, Grade 4",
+    rating: 5,
+    text: "Best decision we made for our daughter. She now loves math and participates in competitions.",
+    image: "https://randomuser.me/api/portraits/women/2.jpg",
+    location: "Delhi"
+  },
+  {
+    name: "Amit Kumar",
+    childName: "Rohan Kumar, Grade 6",
+    rating: 5,
+    text: "Structured curriculum and amazing teachers make Pro Kidz stand out. Highly recommended!",
+    image: "https://randomuser.me/api/portraits/men/3.jpg",
+    location: "Bangalore"
+  },
+  {
+    name: "Neha Gupta",
+    childName: "Ananya Gupta, Grade 3",
+    rating: 5,
+    text: "My daughter's confidence has skyrocketed. She solves complex problems mentally now!",
+    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    location: "Pune"
+  },
+  {
+    name: "Vikram Singh",
+    childName: "Arjun Singh, Grade 7",
+    rating: 5,
+    text: "Excellent teaching methodology. My son's calculation speed increased by 10x.",
+    image: "https://randomuser.me/api/portraits/men/5.jpg",
+    location: "Jaipur"
+  },
+  {
+    name: "Sunita Reddy",
+    childName: "Sahil Reddy, Grade 5",
+    rating: 5,
+    text: "Worth every penny! My child enjoys math now and grades have improved significantly.",
+    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    location: "Hyderabad"
+  },
+  {
+    name: "Rahul Mehta",
+    childName: "Ishita Mehta, Grade 4",
+    rating: 5,
+    text: "The best investment in my child's future. Highly professional and caring teachers.",
+    image: "https://randomuser.me/api/portraits/men/7.jpg",
+    location: "Ahmedabad"
+  },
+  {
+    name: "Kavita Joshi",
+    childName: "Vedant Joshi, Grade 6",
+    rating: 5,
+    text: "Amazing results in just 3 months! My son's concentration has improved tremendously.",
+    image: "https://randomuser.me/api/portraits/women/8.jpg",
+    location: "Chennai"
+  },
+  {
+    name: "Suresh Nair",
+    childName: "Nikhil Nair, Grade 5",
+    rating: 5,
+    text: "Pro Kidz changed my son's attitude towards math. Now he loves solving problems!",
+    image: "https://randomuser.me/api/portraits/men/9.jpg",
+    location: "Kochi"
+  }
+];
+
+ const stats = [
+  { 
+    value: 200, 
+    label: "Happy Students", 
+    suffix: "+", 
+    color: colors.orange,
+    icon: "👨‍🎓",
+    description: "Across 25+ cities"
+  },
+
+  { 
+    value: 98, 
+    label: "Success Rate", 
+    suffix: "%", 
+    color: colors.blue,
+    icon: "📈",
+    description: "Students improve grades"
+  },
+
+  { 
+    value: 1500, 
+    label: "Online Classes", 
+    suffix: "+", 
+    color: colors.green,
+    icon: "💻",
+    description: "Monthly active"
+  },
+  { 
+    value: 25, 
+    label: "Awards Won", 
+    suffix: "", 
+    color: colors.blue,
+    icon: "🏆",
+    description: "National & International"
+  },
+  { 
+    value: 10, 
+    label: "Schools Partnered", 
+    suffix: "+", 
+    color: colors.orange,
+    icon: "🏫",
+    description: "Trusted institutions"
+  },
+  { 
+    value: 10, 
+    label: "Years of Excellence", 
+    suffix: "+", 
+    color: colors.green,
+    icon: "🎯",
+    description: "Since 2014"
+  },
+];
+
+  // Animation variants
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const fadeLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
-    <Box>
+    <Box sx={{ bgcolor: colors.lightGray }}>
       {/* Hero Section */}
-    <Box
-  sx={{
-    bgcolor: colors.orange,
-    color: 'white',
-    py: { xs: 8, md: 10 },   // 👈 better top-bottom spacing
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '0 0 60px 60px',
-  }}
->
-
-  <Box sx={{ width: '100%', position: 'relative', zIndex: 2 }}>
-    <Grid 
-      container 
-      spacing={4} 
-      alignItems="center"
-      sx={{ minHeight: { md: '85vh' } }}  // 👈 better than 100vh
-    >
-
-      {/* LEFT SIDE */}
-      <Grid 
-        item 
-        xs={12} 
-        md={6}
+      <Box
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          px: { xs: 3, md: 8 },   // 👈 FIXED (15 → 8)
+          position: "relative",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          bgcolor: colors.darkOrange,
+          overflow: "hidden",
         }}
       >
-        <Box sx={{ maxWidth: 520 }}>
-
-          <Chip 
-            label="India's #1 Abacus Academy" 
-            sx={{ 
-              bgcolor: alpha(colors.yellow, 0.15), 
-              color: colors.yellow,
-              mb: 3,
-              fontWeight: 600,
-            }} 
-          />
-
-          <Typography 
-            variant="h2" 
-            sx={{ 
-              fontWeight: 800,
-              mb: 2,
-              fontSize: { xs: '2.2rem', md: '3.4rem' },
-              lineHeight: 1.2,
+        {/* Animated Background Shapes */}
+        {[...Array(6)].map((_, i) => (
+          <Box
+            key={i}
+            component={motion.div}
+            animate={{ y: [0, -30, 0], x: [0, 20, 0], rotate: [0, 10, 0] }}
+            transition={{
+              duration: 5 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
             }}
-          >
-            Master Mental Math with{' '}
-            <Box 
-              component="span" 
-              sx={{ 
-                color: colors.yellow,
-                borderBottom: `4px solid ${colors.yellow}`,
-              }}
-            >
-              Pro Kidz
-            </Box>
-          </Typography>
+            sx={{
+              position: "absolute",
+              width: 60 + i * 20,
+              height: 60 + i * 20,
+              borderRadius: "50%",
+              background: alpha(colors.white, 0.08),
+              top: `${10 + i * 15}%`,
+              left: `${5 + i * 15}%`,
+              pointerEvents: "none",
+            }}
+          />
+        ))}
 
-          <Typography 
-            variant="h6" 
-            sx={{ mb: 4, opacity: 0.85 }}
-          >
-            Unlock your child's hidden potential with our proven abacus training methodology
-          </Typography>
-
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <Button 
-              variant="contained"
-              sx={{ 
-                bgcolor: colors.yellow, 
-                color: colors.orange,
-                px: 4,
-                py: 1.5,
-                fontWeight: 600,
-                boxShadow: 3,
-                '&:hover': {
-                  transform: 'translateY(-3px)',
-                  boxShadow: 6,
-                }
-              }}
-            >
-              Start Learning
-            </Button>
-
-            <Button 
-              variant="outlined"
-              sx={{ 
-                color: 'white', 
-                borderColor: 'white',
-                px: 4,
-                py: 1.5,
-                '&:hover': {
-                  bgcolor: alpha(colors.yellow, 0.1),
-                  borderColor: colors.yellow,
-                }
-              }}
-            >
-              Watch Demo
-            </Button>
-          </Stack>
-
-          {/* Stats */}
-          <Stack direction="row" spacing={5} sx={{ mt: 5 }}>
-            <Box>
-              <Typography variant="h5" fontWeight={700}>10K+</Typography>
-              <Typography variant="body2">Students</Typography>
-            </Box>
-
-            <Box>
-              <Typography variant="h5" fontWeight={700}>50+</Typography>
-              <Typography variant="body2">Teachers</Typography>
-            </Box>
-
-            <Box>
-              <Typography variant="h5" fontWeight={700}>98%</Typography>
-              <Typography variant="body2">Success</Typography>
-            </Box>
-          </Stack>
-
-        </Box>
-      </Grid>
-
-      {/* RIGHT SIDE */}
-      <Grid 
-        item 
-        xs={12} 
-        md={6}
+        <Container
+          maxWidth="xl"
+          sx={{ position: "relative", zIndex: 2, py: { xs: 6, md: 0 } }}
+        >
+         <Grid container spacing={6} alignItems="center">
+  {/* Left Content - 50% */}
+  <Grid item xs={12} md={6}>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={fadeLeft}
+      transition={{ duration: 0.8 }}
+    >
+      <Chip
+        icon={<AutoAwesomeIcon />}
+        label="⭐ India's Most Loved Abacus Academy ⭐"
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          px: { xs: 2, md: 6 },
+          bgcolor: alpha(colors.white, 0.2),
+          color: colors.white,
+          mb: 3,
+          fontWeight: 700,
+          fontSize: '0.9rem',
+          backdropFilter: 'blur(10px)',
+        }}
+      />
+      
+      <Typography
+        variant="h1"
+        sx={{
+          fontWeight: 800,
+          fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem', lg: '3.8rem' },
+          color: colors.white,
+          mb: 2,
+          lineHeight: 1.2,
         }}
       >
-        <Box
+        Make Math 🎯 
+        <Box component="span" sx={{ display: 'block', color: colors.yellow, mt: 1 }}>
+          Super Fun & Easy! 🚀
+        </Box>
+      </Typography>
+      
+      <Typography
+        variant="h6"
+        sx={{ 
+          color: alpha(colors.white, 0.95), 
+          mb: 3,
+          fontSize: { xs: '1rem', md: '1.1rem' },
+          lineHeight: 1.5
+        }}
+      >
+        🧠 Turn your child into a Human Calculator • ⚡ 5x Faster Calculations • 🎮 Learn with Games & Activities
+      </Typography>
+
+      <Typography
+        variant="body1"
+        sx={{ 
+          color: alpha(colors.white, 0.85), 
+          mb: 4,
+          fontSize: { xs: '0.9rem', md: '1rem' }
+        }}
+      >
+        👶 For Kids Age 5-15 • 🏆 Certified Course • 📚 50,000+ Happy Students • 🎯 98% Success Rate
+      </Typography>
+
+      <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+        <Button
+          variant="contained"
+          size="large"
+          startIcon={<RocketLaunchIcon />}
           sx={{
-            width: '90%',
-            maxWidth: 500,
-            borderRadius: 4,
-            overflow: 'hidden',
-            boxShadow: 6,
-            position: 'relative',
+            bgcolor: colors.yellow,
+            color: colors.orange,
+            px: 4,
+            py: 1.5,
+            fontWeight: 800,
+            fontSize: '1rem',
+            borderRadius: 3,
+            "&:hover": { 
+              opacity: 0.9,
+              transform: 'translateY(-3px)'
+            },
           }}
         >
-          <Box
-            component="img"
-            src={homeImage}
-            alt="Pro Kidz"
-            sx={{
-              width: '100%',
-              height: 'auto',
-              objectFit: 'cover',
-              transition: '0.4s',
-              '&:hover': {
-                transform: 'scale(1.05)',
-              }
-            }}
-          />
+          🎉 Start Free Trial
+        </Button>
+        <Button
+          variant="outlined"
+          size="large"
+          startIcon={<PlayCircleIcon />}
+          sx={{
+            color: colors.white,
+            borderColor: colors.white,
+            px: 4,
+            py: 1.5,
+            borderRadius: 3,
+            "&:hover": { 
+              bgcolor: alpha(colors.white, 0.1),
+              transform: 'translateY(-3px)'
+            },
+          }}
+        >
+          👀 Watch Magic Demo
+        </Button>
+      </Stack>
 
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: 15,
-              left: 15,
-              bgcolor: alpha('#000', 0.6),
-              color: '#fff',
-              px: 2,
-              py: 1,
-              borderRadius: 2,
-              fontSize: 14,
-            }}
-          >
-            ⭐ Trusted by 10,000+ Parents
-          </Box>
+      <Stack
+        direction="row"
+        spacing={3}
+        sx={{ mt: 5, flexWrap: "wrap", gap: 2 }}
+      >
+        <Box sx={{ textAlign: 'center' }}>
+          <Typography variant="h3" fontWeight={800} color={colors.yellow}>
+            50k+
+          </Typography>
+          <Typography variant="body2" sx={{ color: alpha(colors.white, 0.9) }}>
+            Happy Kids
+          </Typography>
         </Box>
-      </Grid>
+        <Box sx={{ textAlign: 'center' }}>
+          <Typography variant="h3" fontWeight={800} color={colors.yellow}>
+            500+
+          </Typography>
+          <Typography variant="body2" sx={{ color: alpha(colors.white, 0.9) }}>
+            Expert Teachers
+          </Typography>
+        </Box>
+        <Box sx={{ textAlign: 'center' }}>
+          <Typography variant="h3" fontWeight={800} color={colors.yellow}>
+            25+
+          </Typography>
+          <Typography variant="body2" sx={{ color: alpha(colors.white, 0.9) }}>
+            Awards Won
+          </Typography>
+        </Box>
+      </Stack>
 
-    </Grid>
-  </Box>
+      {/* Trust Badges */}
+      <Stack direction="row" spacing={2} sx={{ mt: 4, flexWrap: "wrap", gap: 1 }}>
+        <Chip 
+          label="🏆 India's Top Rated" 
+          size="small" 
+          sx={{ bgcolor: alpha(colors.white, 0.15), color: colors.white }}
+        />
+        <Chip 
+          label="⭐ 4.9/5 Rating" 
+          size="small" 
+          sx={{ bgcolor: alpha(colors.white, 0.15), color: colors.white }}
+        />
+        <Chip 
+          label="🎓 ISO Certified" 
+          size="small" 
+          sx={{ bgcolor: alpha(colors.white, 0.15), color: colors.white }}
+        />
+      </Stack>
+    </motion.div>
+  </Grid>
 
-  {/* Decorative Elements (behind content) */}
-  <Box
-    sx={{
-      position: 'absolute',
-      bottom: -50,
-      left: -50,
-      width: 200,
-      height: 200,
-      borderRadius: '50%',
-      bgcolor: alpha(colors.yellow, 0.2),
-      zIndex: 1,
-    }}
-  />
-  <Box
-    sx={{
-      position: 'absolute',
-      top: -30,
-      right: -30,
-      width: 150,
-      height: 150,
-      borderRadius: '50%',
-      bgcolor: alpha(colors.pink, 0.2),
-      zIndex: 1,
-    }}
-  />
-</Box>
+  {/* Right Image - 50% */}
+  <Grid item xs={12} md={6}>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={fadeRight}
+      transition={{ duration: 0.8, delay: 0.2 }}
+    >
+      <Box sx={{ position: "relative", textAlign: "center" }}>
+        {/* Floating Badge 1 */}
+        <Box
+          component={motion.div}
+          animate={{ y: [-10, 10, -10] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          sx={{
+            position: "absolute",
+            top: 10,
+            left: -10,
+            bgcolor: colors.yellow,
+            color: colors.orange,
+            px: 2,
+            py: 1,
+            borderRadius: 4,
+            display: { xs: 'none', md: 'flex' },
+            alignItems: 'center',
+            gap: 1,
+            boxShadow: 3,
+            zIndex: 2,
+          }}
+        >
+          <EmojiEventsIcon sx={{ fontSize: 20 }} />
+          <Typography variant="caption" fontWeight={700}>Best Academy 2024</Typography>
+        </Box>
+
+        {/* Floating Badge 2 */}
+        <Box
+          component={motion.div}
+          animate={{ y: [10, -10, 10] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          sx={{
+            position: "absolute",
+            bottom: 50,
+            right: -10,
+            bgcolor: colors.green,
+            color: colors.white,
+            px: 2,
+            py: 1,
+            borderRadius: 4,
+            display: { xs: 'none', md: 'flex' },
+            alignItems: 'center',
+            gap: 1,
+            boxShadow: 3,
+            zIndex: 2,
+          }}
+        >
+          <SchoolIcon sx={{ fontSize: 20 }} />
+          <Typography variant="caption" fontWeight={700}>1M+ Classes Completed</Typography>
+        </Box>
+
+        {/* Main Image */}
+        <Box
+          component="img"
+          src={homeImage}
+          alt="Pro Kidz Student"
+          sx={{
+            width: "100%",
+            maxWidth: 500,
+            height: "auto",
+            borderRadius: 5,
+            boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+            margin: "0 auto",
+            display: "block",
+            position: "relative",
+            zIndex: 1,
+          }}
+        />
+        
+        {/* Rating Badge */}
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 20,
+            left: "50%",
+            transform: "translateX(-50%)",
+            bgcolor: alpha(colors.white, 0.95),
+            px: 2.5,
+            py: 1.2,
+            borderRadius: 4,
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
+            whiteSpace: "nowrap",
+            boxShadow: 3,
+            zIndex: 2,
+          }}
+        >
+          <Rating value={5} readOnly size="small" sx={{ color: colors.yellow }} />
+          <Typography variant="body2" fontWeight={700} color={colors.black}>
+            💝 10,000+ Happy Parents
+          </Typography>
+        </Box>
+
+        {/* Animated Circles behind image */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "110%",
+            height: "110%",
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${alpha(colors.yellow, 0.1)}, transparent)`,
+            zIndex: 0,
+          }}
+        />
+      </Box>
+    </motion.div>
+  </Grid>
+</Grid>
+        </Container>
+      </Box>
 
       {/* Features Section */}
-    <Container sx={{ py: 6 }}>
+     <Container maxWidth="xl" sx={{ py: { xs: 6, sm: 8, md: 10 } }}>
+<motion.div
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={fadeUp}
+  transition={{ duration: 0.6 }}
+  style={{ textAlign: 'center', width: '100%' }}
+>
+  <Typography
+    variant="h3"
+    sx={{ 
+      mb: 2, 
+      color: colors.orange,
+      fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' },
+      fontWeight: 800
+    }}
+  >
+    🎯 Why Choose Pro Kidz?
+  </Typography>
+  <Typography
+    variant="h6"
+    sx={{ 
+      mb: { xs: 4, sm: 6, md: 8 },
+      fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
+      color: colors.gray
+    }}
+  >
+    🌟 Empowering young minds with world-class abacus training 🌟
+  </Typography>
+</motion.div>
 
-  {/* HEADER SAME */}
-
-  <Box sx={{ overflowX: 'auto' }}>
-    <Grid 
-      container 
-      spacing={2} 
-      sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' } }} // 👈 desktop pe single row
-    >
-      {features.map((feature, index) => (
-        <Grid 
-          item 
-          xs={6} 
-          sm={4} 
-          md={2.4}   // 👈 approx 5 cards feel (works visually)
-          key={index}
-          sx={{ minWidth: { md: 180 } }} // 👈 important for row
+  <Box
+    sx={{
+      display: 'grid',
+      gridTemplateColumns: {
+        xs: '1fr',
+        sm: 'repeat(2, 1fr)',
+        md: 'repeat(3, 1fr)'
+      },
+      gap: { xs: 2, sm: 3, md: 4 },
+      justifyItems: 'center',
+      alignItems: 'stretch'
+    }}
+  >
+    {features.map((feature, index) => (
+      <motion.div
+        key={index}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <Card
+          sx={{
+            width: '100%',
+            maxWidth: 380,
+            minWidth: { xs: 'auto', sm: 230, md: 240 },
+            height: { xs: 'auto', sm: 230, md: 240 },
+            textAlign: "center",
+            bgcolor: feature.bgColor,
+            borderRadius: { xs: 3, md: 4 },
+            transition: "all 0.3s ease-in-out",
+            border: `2px solid ${alpha(feature.color, 0.3)}`,
+            cursor: "pointer",
+            display: 'flex',
+            flexDirection: 'column',
+            "&:hover": {
+              transform: "translateY(-10px)",
+              boxShadow: `0 20px 40px ${alpha(feature.color, 0.25)}`,
+              borderColor: feature.color,
+            },
+          }}
         >
-          <motion.div
-            initial={{ y: 40, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: index * 0.05, duration: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Card 
-              sx={{ 
-                textAlign: 'center', 
-                py: 2,      // 👈 reduced
-                px: 1.5,    // 👈 reduced
-                height: '100%',
-                borderRadius: 3,
-                transition: '0.3s',
-                '&:hover': {
-                  transform: 'translateY(-6px)',
-                  boxShadow: 4,
-                },
-                borderTop: `3px solid ${feature.color}`,
+          <CardContent sx={{ 
+            p: { xs: 2.5, sm: 3, md: 4 },
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <Box
+              sx={{
+                display: "inline-flex",
+                p: { xs: 1.5, sm: 2 },
+                borderRadius: "50%",
+                bgcolor: alpha(feature.color, 0.15),
+                color: feature.color,
+                mb: { xs: 2, sm: 2.5 },
+                '& svg': {
+                  fontSize: { xs: 35, sm: 38, md: 42 }
+                }
               }}
             >
-              <CardContent sx={{ p: '8px !important' }}>
-                
-                {/* Icon */}
-                <Box 
-                  sx={{ 
-                    mb: 1,
-                    display: 'inline-flex',
-                    p: 1.2,   // 👈 smaller
-                    borderRadius: '50%',
-                    background: alpha(feature.color, 0.1),
-                    color: feature.color,
-                    fontSize: 20
-                  }}
-                >
-                  {feature.icon}
-                </Box>
-
-                {/* Title */}
-                <Typography 
-                  variant="subtitle1" 
-                  sx={{ fontWeight: 600, mb: 0.5 }}
-                >
-                  {feature.title}
-                </Typography>
-
-                {/* Description */}
-                <Typography 
-                  color="text.secondary" 
-                  variant="caption"   // 👈 smaller text
-                >
-                  {feature.description}
-                </Typography>
-
-              </CardContent>
-            </Card>
-          </motion.div>
-        </Grid>
-      ))}
-    </Grid>
+              {feature.icon}
+            </Box>
+            <Typography 
+              variant="h6" 
+              fontWeight={800} 
+              gutterBottom
+              sx={{
+                fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                mb: 1.5
+              }}
+            >
+              {feature.title}
+            </Typography>
+            <Typography 
+              variant="body2" 
+              color="text.secondary"
+              sx={{
+                fontSize: { xs: '0.8rem', sm: '0.85rem', md: '0.9rem' },
+                lineHeight: 1.6,
+                px: { xs: 1, sm: 2 }
+              }}
+            >
+              {feature.description}
+            </Typography>
+          </CardContent>
+        </Card>
+      </motion.div>
+    ))}
   </Box>
-
 </Container>
 
       {/* Programs Section */}
-   <Box sx={{ bgcolor: alpha(colors.pink, 0.05), py: 6 }}>
-  <Container>
+      <Box sx={{ bgcolor: colors.pastelOrange, py: 10 }}>
+        <Container maxWidth="xl">
+        <motion.div
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={fadeUp}
+  transition={{ duration: 0.6 }}
+  style={{ textAlign: 'center', width: '100%' }}
+>
+  <Typography
+    variant="h3"
+    sx={{ 
+      mb: 2, 
+      color: colors.green,
+      fontWeight: 800,
+      fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' }
+    }}
+  >
+    📚 Our Programs
+  </Typography>
+  <Typography
+    variant="h6"
+    sx={{ 
+      mb: 6,
+      color: colors.gray,
+      fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+    }}
+  >
+    🎯 Structured curriculum for every age group
+  </Typography>
+</motion.div>
 
-    {/* HEADER SAME */}
-
-    <Box sx={{ overflowX: 'auto' }}>
-      <Grid 
-        container 
-        spacing={2}
-        sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' } }} // 👈 single row desktop
-      >
-        {programs.map((program, index) => (
-          <Grid 
-            item 
-            xs={6} 
-            sm={4} 
-            md={2.4}   // 👈 compact width feel
-            key={index}
-            sx={{ minWidth: { md: 190 } }} // 👈 important
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <Card 
-                sx={{ 
-                  textAlign: 'center',
-                  height: '100%',
-                  borderRadius: 3,
-                  p: 1, // 👈 reduced padding
-                  transition: '0.3s',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: 4,
-                  }
-                }}
-              >
-
-                {/* Level Tag */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: -10,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    bgcolor: program.color,
-                    color: 'white',
-                    px: 1.5,
-                    py: 0.3,
-                    borderRadius: 2,
-                    fontWeight: 600,
-                    fontSize: 12, // 👈 smaller
-                  }}
+          <Grid container spacing={4}>
+            {programs.map((program, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={scaleIn}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
-                  {program.level}
-                </Box>
-
-                <CardContent sx={{ p: '10px !important', mt: 2 }}>
-
-                  {/* Age */}
-                  <Typography 
-                    variant="h6"   // 👈 smaller
-                    sx={{ color: program.color, fontWeight: 700, mb: 0.5 }}
-                  >
-                    {program.age}
-                  </Typography>
-
-                  {/* Duration */}
-                  <Typography 
-                    variant="caption" 
-                    color="text.secondary"
-                  >
-                    {program.duration}
-                  </Typography>
-
-                  <Divider sx={{ my: 1 }} />
-
-                  {/* Description */}
-                  <Typography 
-                    variant="caption"   // 👈 compact text
-                    sx={{ display: 'block', mb: 1 }}
-                  >
-                    {program.description}
-                  </Typography>
-
-                  {/* Button */}
-                  <Button 
-                    variant="outlined" 
-                    size="small"
-                    sx={{ 
-                      borderColor: program.color,
-                      color: program.color,
-                      fontSize: 11,
-                      py: 0.3,
-                      '&:hover': { bgcolor: alpha(program.color, 0.1) }
+                  <Card
+                    sx={{
+                      height: "100%",
+                      textAlign: "center",
+                      borderRadius: 4,
+                      position: "relative",
+                      borderTop: `5px solid ${program.color}`,
+                      "&:hover": {
+                        transform: "translateY(-8px)",
+                        boxShadow: 6,
+                      },
                     }}
                   >
-                    Learn →
-                  </Button>
-
-                </CardContent>
-              </Card>
-            </motion.div>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 3,
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        bgcolor: program.color,
+                        color: colors.white,
+                        px: 2.5,
+                        py: 0.75,
+                        borderRadius: 4,
+                        fontWeight: 700,
+                        fontSize: "0.8rem",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {program.level}
+                    </Box>
+                    <CardContent sx={{ pt: 4, pb: 3 }}>
+                      <Box sx={{ color: program.color, mb: 2, fontSize: 40 }}>
+                        {program.icon}
+                      </Box>
+                      <Typography
+                        variant="h5"
+                        fontWeight={700}
+                        color={program.color}
+                        gutterBottom
+                      >
+                        {program.age}
+                      </Typography>
+                      <Chip
+                        label={program.duration}
+                        size="small"
+                        sx={{
+                          mb: 2,
+                          bgcolor: alpha(program.color, 0.1),
+                          color: program.color,
+                          fontWeight: 600,
+                        }}
+                      />
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ mb: 2 }}
+                      >
+                        {program.description}
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        sx={{
+                          bgcolor: program.color,
+                          "&:hover": { opacity: 0.9 },
+                        }}
+                      >
+                        Enroll Now →
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
-    </Box>
-
-  </Container>
-</Box>
+        </Container>
+      </Box>
 
       {/* Stats Section */}
-     <Box sx={{ py: 6 }}>
-  <Container>
+    <Container maxWidth="xl" sx={{ py: { xs: 6, sm: 8, md: 10 } }}>
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={fadeUp}
+    transition={{ duration: 0.6 }}
+    style={{ textAlign: 'center', marginBottom: '48px' }}
+  >
+    <Typography
+      variant="h3"
+      sx={{ 
+        mb: 2, 
+        color: colors.orange,
+        fontWeight: 800,
+        fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' }
+      }}
+    >
+      📊 Our Impact in Numbers
+    </Typography>
+    <Typography
+      variant="h6"
+      sx={{ 
+        color: colors.gray,
+        fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+      }}
+    >
+      🌟 Making a difference, one child at a time
+    </Typography>
+  </motion.div>
 
-    <Box sx={{ overflowX: 'auto' }}>
-      <Grid 
-        container 
-        spacing={2}
-        sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' } }} // 👈 desktop single row
-      >
-
-        {/* CARD 1 */}
-        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
-            <Paper 
-              sx={{ 
-                p: 2,   // 👈 reduced
-                textAlign: 'center', 
-                bgcolor: alpha(colors.orange, 0.1), 
-                borderBottom: `3px solid ${colors.orange}`,
-                borderRadius: 3
-              }}
-            >
-              <Typography variant="h5" fontWeight={700} color={colors.orange}>
-                10,000+
-              </Typography>
-              <Typography variant="body2">Students</Typography>
-            </Paper>
-          </motion.div>
-        </Grid>
-
-        {/* CARD 2 */}
-        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
-            <Paper 
-              sx={{ 
-                p: 2, 
-                textAlign: 'center', 
-                bgcolor: alpha(colors.yellow, 0.1), 
-                borderBottom: `3px solid ${colors.yellow}`,
-                borderRadius: 3
-              }}
-            >
-              <Typography variant="h5" fontWeight={700} color={colors.yellowDark}>
-                50+
-              </Typography>
-              <Typography variant="body2">Teachers</Typography>
-            </Paper>
-          </motion.div>
-        </Grid>
-
-        {/* CARD 3 */}
-        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
-            <Paper 
-              sx={{ 
-                p: 2, 
-                textAlign: 'center', 
-                bgcolor: alpha(colors.pink, 0.1), 
-                borderBottom: `3px solid ${colors.pink}`,
-                borderRadius: 3
-              }}
-            >
-              <Typography variant="h5" fontWeight={700} color={colors.pink}>
-                98%
-              </Typography>
-              <Typography variant="body2">Success</Typography>
-            </Paper>
-          </motion.div>
-        </Grid>
-
-        {/* CARD 4 */}
-        <Grid item xs={6} sm={4} md={2.5} sx={{ minWidth: { md: 200 } }}>
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-          >
-            <Paper 
-              sx={{ 
-                p: 2, 
-                textAlign: 'center', 
-                bgcolor: alpha(colors.orange, 0.1), 
-                borderBottom: `3px solid ${colors.orange}`,
-                borderRadius: 3
-              }}
-            >
-              <Typography variant="h5" fontWeight={700} color={colors.orange}>
-                25+
-              </Typography>
-              <Typography variant="body2">Awards</Typography>
-            </Paper>
-          </motion.div>
-        </Grid>
-
-      </Grid>
-    </Box>
-
-  </Container>
-</Box>
-
-      {/* Testimonials Section */}
-     <Grid container spacing={4}>
-  {testimonials.map((testimonial, index) => (
-    <Grid item xs={12} sm={6} md={6} key={index}>
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: index * 0.1, duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <Card 
-          sx={{ 
-            p: 2.5,   // 👈 thoda compact
-            height: '100%', 
-            position: 'relative', 
-            bgcolor: alpha(colors.orange, 0.02),
-            borderRadius: 3,
-            transition: '0.3s',
-            '&:hover': {
-              transform: 'translateY(-5px)',
-              boxShadow: 4,
-            }
-          }}
-        >
-          <FormatQuoteIcon 
-            sx={{ 
-              fontSize: 50, 
-              color: alpha(colors.orange, 0.2),
-              position: 'absolute',
-              top: 10,
-              right: 15,
-            }} 
-          />
-
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-            <Avatar 
-              src={testimonial.image} 
-              sx={{ 
-                width: 50, 
-                height: 50, 
-                mr: 2, 
-                border: `2px solid ${colors.orange}` 
-              }} 
-            />
-            <Box>
-              <Typography variant="subtitle1" fontWeight={600}>
-                {testimonial.name}
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                {testimonial.childName}
-              </Typography>
-            </Box>
-          </Box>
-
-          <Rating value={testimonial.rating} readOnly size="small" sx={{ mb: 1 }} />
-
-          <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
-            "{testimonial.text}"
-          </Typography>
-
-        </Card>
-      </motion.div>
-    </Grid>
-  ))}
-</Grid>
-
-      {/* CTA Section */}
-      <Container sx={{ py: 8 }}>
+  <Grid container spacing={{ xs: 2, sm: 3, md: 5 }}>
+    {stats.map((stat, index) => (
+      <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
         <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          variants={scaleIn}
+          transition={{ delay: index * 0.05, duration: 0.4 }}
         >
           <Paper
             sx={{
-              p: { xs: 4, md: 6 },
-              bgcolor: colors.yellow,
-              color: colors.orangeDark,
-              textAlign: 'center',
+              p: { xs: 2, sm: 3 },
+              textAlign: "center",
+              bgcolor: alpha(stat.color, 0.08),
               borderRadius: 4,
+              border: `2px solid ${alpha(stat.color, 0.2)}`,
+              transition: "all 0.3s ease",
+              cursor: "pointer",
+              height: "100%",
+              
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              "&:hover": {
+                transform: "translateY(-8px)",
+                boxShadow: `0 10px 30px ${alpha(stat.color, 0.2)}`,
+                borderColor: stat.color,
+                bgcolor: alpha(stat.color, 0.12),
+              },
             }}
           >
-            <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '1.8rem', md: '3rem' } }}>
-              Ready to Start Your Journey?
+            {/* Icon */}
+            <Typography 
+              variant="h2" 
+              sx={{ 
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                mb: 1
+              }}
+            >
+              {stat.icon}
             </Typography>
-            <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-              Join thousands of students who have transformed their mathematical abilities
+            
+            {/* Value */}
+            <Typography 
+              variant="h3" 
+              fontWeight={800} 
+              color={stat.color}
+              sx={{
+                fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+                lineHeight: 1.2
+              }}
+            >
+              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
             </Typography>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-              <Button 
-                variant="contained" 
-                size="large"
-                sx={{ 
-                  bgcolor: colors.orange, 
-                  color: 'white',
-                  '&:hover': { bgcolor: colors.orangeDark },
-                  px: 4,
-                }}
-              >
-                Get Started Today
-              </Button>
-              <Button 
-                variant="outlined" 
-                size="large"
-                sx={{ 
-                  color: colors.orange, 
-                  borderColor: colors.orange,
-                  '&:hover': { bgcolor: alpha(colors.orange, 0.1) }
-                }}
-              >
-                Book Free Demo
-              </Button>
-            </Stack>
+            
+            {/* Label */}
+            <Typography 
+              variant="body1" 
+              fontWeight={700} 
+              sx={{ 
+                mt: 1,
+                fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
+                color: colors.black
+              }}
+            >
+              {stat.label}
+            </Typography>
+            
+            {/* Description */}
+            <Typography 
+              variant="caption" 
+              sx={{ 
+                mt: 0.5,
+                color: colors.gray,
+                fontSize: { xs: '0.7rem', sm: '0.75rem', md: '0.8rem' }
+              }}
+            >
+              {stat.description}
+            </Typography>
           </Paper>
         </motion.div>
-      </Container>
+      </Grid>
+    ))}
+  </Grid>
+</Container>
+
+    
+<Box sx={{ bgcolor: colors.pastelGreen, py: { xs: 6, sm: 8, md: 10 } }}>
+  <Container maxWidth="xl">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      transition={{ duration: 0.6 }}
+      style={{ textAlign: 'center', width: '100%', marginBottom: '48px' }}
+    >
+      <Typography
+        variant="h3"
+        sx={{ 
+          mb: 2, 
+          color: colors.blue,
+          fontWeight: 800,
+          fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' }
+        }}
+      >
+        💝 What Parents Say
+      </Typography>
+      <Typography
+        variant="h6"
+        sx={{ 
+          color: colors.gray,
+          fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+        }}
+      >
+        🌟 Join 50,000+ happy families who trust Pro Kidz 🌟
+      </Typography>
+    </motion.div>
+
+    {/* Fixed Width Grid - 3 in a row */}
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        gap: { xs: 2, sm: 3, md: 5 },
+      }}
+    >
+      {testimonials.slice(0, 6).map((testimonial, index) => (
+        <motion.div
+          key={index}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          transition={{ delay: (index % 3) * 0.1, duration: 0.5 }}
+          style={{
+            width: '100%',
+            maxWidth: '400px',
+            flex: '0 0 auto',
+          }}
+        >
+          <Card
+            sx={{
+              p: { xs: 2, sm: 2.5, md: 3 },
+              height: "100%",
+              minHeight: { xs: 'auto', md: 260 },
+              width: '100%',
+              maxWidth: '380px',
+              position: "relative",
+              borderBottom: `4px solid ${colors.orange}`,
+              borderRadius: 3,
+              transition: "all 0.3s ease",
+              display: 'flex',
+              flexDirection: 'column',
+              "&:hover": {
+                transform: "translateY(-8px)",
+                boxShadow: 6,
+                borderBottomWidth: '6px',
+              },
+            }}
+          >
+            <FormatQuoteIcon
+              sx={{
+                fontSize: { xs: 40, sm: 50, md: 60 },
+                color: alpha(colors.orange, 0.15),
+                position: "absolute",
+                top: 12,
+                right: 16,
+              }}
+            />
+            
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+              <Avatar
+                src={testimonial.image}
+                sx={{
+                  width: { xs: 48, sm: 52, md: 56 },
+                  height: { xs: 48, sm: 52, md: 56 },
+                  mr: 2,
+                  border: `3px solid ${colors.orange}`,
+                }}
+              />
+              <Box>
+                <Typography 
+                  variant="subtitle1" 
+                  fontWeight={700}
+                  sx={{ fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' } }}
+                >
+                  {testimonial.name}
+                </Typography>
+                <Typography 
+                  variant="caption" 
+                  color="text.secondary"
+                  sx={{ fontSize: { xs: '0.7rem', sm: '0.75rem', md: '0.8rem' } }}
+                >
+                  {testimonial.childName}
+                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}>
+                  <Typography variant="caption" color="text.secondary">
+                    📍 {testimonial.location}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+            
+            <Rating
+              value={testimonial.rating}
+              readOnly
+              size="small"
+              sx={{ mb: 1.5, color: colors.yellow }}
+            />
+            
+            <Typography
+              variant="body2"
+              sx={{ 
+                fontStyle: "italic", 
+                lineHeight: 1.6,
+                fontSize: { xs: '0.8rem', sm: '0.85rem', md: '0.9rem' },
+                flex: 1,
+                wordWrap: 'break-word',
+                whiteSpace: 'normal',
+                overflowWrap: 'break-word',
+                wordBreak: 'break-word',
+                display: '-webkit-box',
+                WebkitLineClamp: 4,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
+              }}
+            >
+              "{testimonial.text}"
+            </Typography>
+          </Card>
+        </motion.div>
+      ))}
+    </Box>
+
+  
+  </Container>
+</Box>
+
+
+      {/* CTA Section */}
+  <Container maxWidth="xl" sx={{ py: { xs: 6, sm: 8, md: 10 } }}>
+  <Box sx={{ display: 'flex', justifyContent: 'center', px: { xs: 2, sm: 3 } }}>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={scaleIn}
+      transition={{ duration: 0.6 }}
+      whileHover={{ scale: 1.01 }}
+      style={{ width: '100%', maxWidth: '1000px' }}
+    >
+      <Paper
+        elevation={0}
+        sx={{
+          p: { xs: 3, sm: 4, md: 5 },
+          bgcolor: colors.orange,
+          textAlign: "center",
+          borderRadius: { xs: 3, sm: 4, md: 5 },
+          position: "relative",
+          overflow: "hidden",
+          boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
+          width: '100%',
+          border: `1px solid ${alpha(colors.white, 0.2)}`,
+        }}
+      >
+        {/* Decorative Circles */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: -80,
+            right: -80,
+            width: 200,
+            height: 200,
+            borderRadius: '50%',
+            background: alpha(colors.yellow, 0.15),
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: -80,
+            left: -80,
+            width: 200,
+            height: 200,
+            borderRadius: '50%',
+            background: alpha(colors.yellow, 0.15),
+          }}
+        />
+
+        {/* Content */}
+        <Box sx={{ position: 'relative', zIndex: 2 }}>
+          <Typography
+            variant="h3"
+            gutterBottom
+            sx={{
+              fontWeight: 800,
+              color: colors.white,
+              fontSize: { xs: "1.6rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
+              textAlign: 'center',
+            }}
+          >
+            🚀 Ready to Start Your Journey?
+          </Typography>
+          
+          <Typography
+            variant="h6"
+            sx={{ 
+              mb: 4, 
+              color: alpha(colors.white, 0.95),
+              fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.2rem' },
+              textAlign: 'center',
+              maxWidth: '700px',
+              mx: 'auto',
+              px: 2
+            }}
+          >
+            🌟 Join 50,000+ happy students who have transformed their mathematical abilities 🌟
+          </Typography>
+          
+         <Stack
+  direction={{ xs: "column", sm: "row" }}
+  spacing={2.5}
+  display="flex"
+  justifyContent="center"
+  alignItems="center"
+  sx={{ mb: 4, width: '100%' }}
+>
+  <Button
+    variant="contained"
+    size="large"
+    startIcon={<CelebrationIcon />}
+    sx={{
+      bgcolor: colors.white,
+      color: colors.orange,
+      px: 4,
+      py: 1.3,
+      fontWeight: 800,
+      fontSize: '0.95rem',
+      borderRadius: 4,
+      minWidth: '200px',
+      textAlign: 'center',
+      '&:hover': { 
+        bgcolor: colors.white,
+        opacity: 0.95,
+        transform: 'translateY(-3px)',
+        boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+      },
+    }}
+  >
+    🎉 Get Started Today
+  </Button>
+  <Button
+    variant="outlined"
+    size="large"
+    startIcon={<TouchAppIcon />}
+    sx={{
+      color: colors.white,
+      borderColor: colors.white,
+      px: 4,
+      py: 1.3,
+      borderRadius: 4,
+      minWidth: '200px',
+      textAlign: 'center',
+      '&:hover': { 
+        bgcolor: alpha(colors.white, 0.15),
+        transform: 'translateY(-3px)',
+        borderColor: colors.white,
+      },
+    }}
+  >
+    📞 Book Free Demo
+  </Button>
+</Stack>
+
+<Stack
+  direction={{ xs: "column", sm: "row" }}
+  spacing={2}
+  justifyContent="center"
+  alignItems="center"
+  sx={{ 
+    flexWrap: 'wrap', 
+    gap: 1.5, 
+    width: '100%',
+    '& .MuiChip-root': {
+      margin: '0 auto'
+    }
+  }}
+>
+  <Chip
+    label="✅ 100% Money Back Guarantee"
+    sx={{ 
+      bgcolor: alpha(colors.white, 0.15), 
+      color: colors.white,
+      fontWeight: 500,
+      '&:hover': { bgcolor: alpha(colors.white, 0.25) },
+      display: 'inline-flex',
+    }}
+  />
+  <Chip
+    label="🎓 ISO Certified Course"
+    sx={{ 
+      bgcolor: alpha(colors.white, 0.15), 
+      color: colors.white,
+      fontWeight: 500,
+      '&:hover': { bgcolor: alpha(colors.white, 0.25) },
+      display: 'inline-flex',
+    }}
+  />
+  <Chip
+    label="🏆 India's Top Academy"
+    sx={{ 
+      bgcolor: alpha(colors.white, 0.15), 
+      color: colors.white,
+      fontWeight: 500,
+      '&:hover': { bgcolor: alpha(colors.white, 0.25) },
+      display: 'inline-flex',
+    }}
+  />
+</Stack>
+
+          <Typography
+            variant="body2"
+            sx={{ 
+              mt: 3,
+              color: alpha(colors.white, 0.7),
+              fontSize: { xs: '0.7rem', sm: '0.75rem' },
+              textAlign: 'center',
+            }}
+          >
+            ⚡ Limited seats available for this batch • No hidden charges • Free demo class included
+          </Typography>
+        </Box>
+      </Paper>
+    </motion.div>
+  </Box>
+</Container>
+
+      {/* Floating Action Button */}
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        style={{ position: "fixed", bottom: 24, right: 24, zIndex: 1000 }}
+      >
+        <IconButton
+          sx={{
+            bgcolor: colors.orange,
+            color: colors.white,
+            width: 56,
+            height: 56,
+            boxShadow: 4,
+            "&:hover": { bgcolor: colors.darkOrange, transform: "scale(1.1)" },
+          }}
+        >
+          <SchoolIcon />
+        </IconButton>
+      </motion.div>
     </Box>
   );
 };

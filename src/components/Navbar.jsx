@@ -1,3 +1,4 @@
+// components/Navbar.jsx
 import React, { useState } from 'react';
 import {
   AppBar,
@@ -11,25 +12,35 @@ import {
   Box,
   Container,
   useMediaQuery,
-  useTheme,
+  alpha,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { Link as RouterLink } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
-// 👉 import your logo image
-import logo from '../assets/logo.png'; // adjust path if needed
+// Colors matching Home page theme
+const colors = {
+  orange: '#FF6B35',
+  darkOrange: '#E85D2C',
+  green: '#4CAF50',
+  blue: '#2196F3',
+  yellow: '#FFC107',
+  white: '#FFFFFF',
+  black: '#2D2D2D',
+  gray: '#757575',
+  lightGray: '#F8F9FA',
+};
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery('(max-width: 900px)');
 
   const menuItems = [
     { text: 'Home', path: '/' },
     { text: 'About', path: '/about' },
     { text: 'Courses', path: '/courses' },
     { text: 'Pricing', path: '/pricing' },
-    
     { text: 'Contact', path: '/contact' },
   ];
 
@@ -37,27 +48,19 @@ const Navbar = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  // 👉 Drawer (Mobile Menu)
+  // Mobile Drawer
   const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{
-        textAlign: 'center',
-        width: 260,
-        py: 2,
-      }}
-    >
-      {/* Logo */}
-      <Box sx={{ my: 4, display: 'flex', justifyContent: 'center' }}>
-        <Box
-          component="img"
-          src={logo}
-          alt="ProKidz Logo"
-          sx={{
-            height: 100,
-            objectFit: 'contain',
-          }}
-        />
+    <Box sx={{ width: 280, height: '100%', bgcolor: colors.white }}>
+      {/* Drawer Header with Close Button */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
+        <IconButton onClick={handleDrawerToggle}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
+
+      {/* Logo in Drawer */}
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+        <Box component="img" src={logo} alt="ProKidz Logo" sx={{ height: 80, objectFit: 'contain' }} />
       </Box>
 
       {/* Menu Items */}
@@ -67,13 +70,18 @@ const Navbar = () => {
             key={item.text}
             component={RouterLink}
             to={item.path}
+            onClick={handleDrawerToggle}
             sx={{
               justifyContent: 'center',
-              borderRadius: 2,
+              textAlign: 'center',
+              py: 1.5,
               mx: 2,
-              my: 1,
+              mb: 1,
+              borderRadius: 3,
+              transition: '0.3s',
               '&:hover': {
-                bgcolor: '#ffe0b2',
+                bgcolor: alpha(colors.orange, 0.1),
+                transform: 'translateX(5px)',
               },
             }}
           >
@@ -81,12 +89,36 @@ const Navbar = () => {
               primary={item.text}
               primaryTypographyProps={{
                 fontWeight: 600,
-                textAlign: 'center',
+                fontSize: '1rem',
+                color: colors.black,
               }}
             />
           </ListItem>
         ))}
       </List>
+
+      {/* CTA Button in Drawer */}
+      <Box sx={{ p: 2, mt: 2 }}>
+        <Button
+          component={RouterLink}
+          to="/enroll"
+          fullWidth
+          variant="contained"
+          onClick={handleDrawerToggle}
+          sx={{
+            bgcolor: colors.orange,
+            color: colors.white,
+            py: 1.5,
+            borderRadius: 3,
+            fontWeight: 700,
+            '&:hover': {
+              bgcolor: colors.darkOrange,
+            },
+          }}
+        >
+          Enroll Now
+        </Button>
+      </Box>
     </Box>
   );
 
@@ -94,64 +126,68 @@ const Navbar = () => {
     <>
       <AppBar
         position="sticky"
-        elevation={1}
+        elevation={0}
         sx={{
-          bgcolor: 'background.paper',
+          bgcolor: colors.white,
+          borderBottom: `1px solid ${alpha(colors.gray, 0.1)}`,
         }}
       >
-        <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-            
+        <Container maxWidth="xl">
+          <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 1 }}>
             {/* Logo */}
-            <RouterLink to="/" style={{ textDecoration: 'none' }}>
-              <Box
-                component="img"
-                src={logo}
-                alt="ProKidz Logo"
-                sx={{
-                  height: { xs: 40, md: 50 },
-                  objectFit: 'contain',
-                  cursor: 'pointer',
-                }}
-              />
+            <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Box component="img" src={logo} alt="ProKidz Logo" sx={{ height: { xs: 45, md: 55 }, objectFit: 'contain' }} />
             </RouterLink>
 
             {/* Desktop Menu */}
-            {isMobile ? (
-              <IconButton onClick={handleDrawerToggle}>
-                <MenuIcon />
-              </IconButton>
-            ) : (
-              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            {!isMobile ? (
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
                 {menuItems.map((item) => (
                   <Button
                     key={item.text}
                     component={RouterLink}
                     to={item.path}
                     sx={{
-                      color: 'text.primary',
+                      color: colors.black,
                       fontWeight: 600,
+                      px: 2,
+                      py: 1,
+                      borderRadius: 2,
+                      transition: '0.3s',
                       '&:hover': {
-                        color: 'primary.main',
+                        color: colors.orange,
+                        bgcolor: alpha(colors.orange, 0.05),
                       },
                     }}
                   >
                     {item.text}
                   </Button>
                 ))}
-
-                {/* CTA Button */}
                 <Button
                   variant="contained"
+                  component={RouterLink}
+                  to="/enroll"
                   sx={{
-                    borderRadius: '20px',
+                    bgcolor: colors.orange,
+                    color: colors.white,
+                    borderRadius: 3,
                     px: 3,
+                    py: 1,
+                    ml: 2,
                     fontWeight: 700,
+                    '&:hover': {
+                      bgcolor: colors.darkOrange,
+                      transform: 'translateY(-2px)',
+                    },
                   }}
                 >
                   Enroll Now
                 </Button>
               </Box>
+            ) : (
+              <IconButton onClick={handleDrawerToggle} sx={{ color: colors.orange }}>
+                <MenuIcon />
+              </IconButton>
             )}
           </Toolbar>
         </Container>
