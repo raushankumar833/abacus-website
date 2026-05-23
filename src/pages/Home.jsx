@@ -465,36 +465,6 @@ const Home = () => {
         </Button>
       </Stack>
 
-      <Stack
-        direction="row"
-        spacing={3}
-        sx={{ mt: 5, flexWrap: "wrap", gap: 2 }}
-      >
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="h3" fontWeight={800} color={colors.yellow}>
-            50k+
-          </Typography>
-          <Typography variant="body2" sx={{ color: alpha(colors.white, 0.9) }}>
-            Happy Kids
-          </Typography>
-        </Box>
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="h3" fontWeight={800} color={colors.yellow}>
-            500+
-          </Typography>
-          <Typography variant="body2" sx={{ color: alpha(colors.white, 0.9) }}>
-            Expert Teachers
-          </Typography>
-        </Box>
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="h3" fontWeight={800} color={colors.yellow}>
-            25+
-          </Typography>
-          <Typography variant="body2" sx={{ color: alpha(colors.white, 0.9) }}>
-            Awards Won
-          </Typography>
-        </Box>
-      </Stack>
 
       {/* Trust Badges */}
       <Stack direction="row" spacing={2} sx={{ mt: 4, flexWrap: "wrap", gap: 1 }}>
@@ -1020,7 +990,7 @@ const Home = () => {
 
 
 
-// Testimonials Section
+
 <Box sx={{ bgcolor: colors.pastelGreen, py: { xs: 6, sm: 8, md: 10 } }}>
   <Container maxWidth="xl">
     <motion.div

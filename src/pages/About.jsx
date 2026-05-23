@@ -40,16 +40,17 @@ import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 // ==================== IMAGE IMPORTS ====================
 import ourStoryImg from '../assets/13.png';
 import interactiveLearningImg from '../assets/10.png';
-import certifiedTrainersImg from '../assets/13.png';
-import curriculumImg from '../assets/14.png';
-import studentSuccessImg from '../assets/15.png';
-import visionImg from '../assets/16.png';
-import missionImg from '../assets/17.png';
+import certifiedTrainersImg from '../assets/33.png';
+import curriculumImg from '../assets/7.png';
+import studentSuccessImg from '../assets/12.png';
+import visionImg from '../assets/31.png';
+import missionImg from '../assets/32.png';
 import coreValuesImg from '../assets/16.png';
+import ctaImage from '../assets/17.png';
 
 // Team Member Images
 import drRajeshImg from '../assets/img1.png';
@@ -173,14 +174,7 @@ const About = () => {
     },
   ];
 
-  const milestones = [
-    { year: '2010', title: 'Founded', description: 'Started with 20 students', icon: <SchoolIcon /> },
-    { year: '2013', title: 'First Center', description: 'Opened first training center', icon: <MenuBookIcon /> },
-    { year: '2016', title: '1000 Students', description: 'Reached 1000+ students', icon: <GroupsIcon /> },
-    { year: '2019', title: 'National Award', description: 'Received excellence award', icon: <EmojiEventsIcon /> },
-    { year: '2022', title: 'Online Platform', description: 'Launched digital learning', icon: <TimelineIcon /> },
-    { year: '2024', title: '10,000+', description: '10,000+ happy students', icon: <CelebrationIcon /> },
-  ];
+
 
   const imageSections = [
     {
@@ -235,7 +229,7 @@ const About = () => {
           >
             <Chip 
               icon={<StarIcon />} 
-              label="15+ Years of Excellence" 
+              label="10+ Years of Excellence" 
               sx={{ 
                 bgcolor: colors.yellow, 
                 color: colors.orangeDark,
@@ -266,7 +260,7 @@ const About = () => {
                 fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' },
               }}
             >
-              Empowering Young Minds Since 2010
+              Empowering Young Minds Since 2014
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: { xs: 1, sm: 2 }, flexWrap: 'wrap' }}>
               <Chip label="🏆 Award Winning" sx={{ bgcolor: colors.yellow, color: colors.orangeDark, px: 1 }} />
@@ -282,131 +276,37 @@ const About = () => {
       </Box>
 
       {/* Our Story Section - Full Width with xl container */}
-    <Container maxWidth="xl" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
-  <Grid container spacing={{ xs: 4, md: 6, lg: 8 }} alignItems="center" direction={{ xs: 'column', md: 'row' }}>
-    {/* Text Section - Left (50%) */}
-  <Grid item xs={12} md={6}>
-  <motion.div
-    initial={{ x: -50, opacity: 0 }}
-    whileInView={{ x: 0, opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-  >
-    <Box sx={{ 
-      mb: 3,
-      display: 'flex',
-      flexDirection: 'column',
-      flexWrap: 'wrap',
-    }}>
-      <Chip 
-        label="Our Journey" 
-        sx={{ 
-          bgcolor: colors.orange, 
-          color: 'white', 
-          mb: 2, 
-          fontWeight: 600,
-          alignSelf: 'flex-start',
-        }} 
-      />
-      <Typography 
-        variant="h3" 
-        gutterBottom 
-        sx={{ 
-          fontWeight: 700, 
-          color: colors.orange, 
-          fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' },
-          wordBreak: 'break-word',
-          flexWrap: 'wrap',
-        }}
+ <Container maxWidth="xl" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
+  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4, alignItems: 'center' }}>
+    {/* Text Section - 60% */}
+    <Box sx={{ width: { xs: '100%', md: '60%' } }}>
+      <motion.div
+        initial={{ x: -50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
       >
-        Our Story
-      </Typography>
+        <Chip label="Our Journey" sx={{ bgcolor: colors.orange, color: 'white', mb: 2, fontWeight: 600 }} />
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, color: colors.orange, fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' } }}>
+          Our Story
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, lineHeight: 1.7, mb: 2 }}>
+          Founded in 2014, Pro Kidz started with a simple mission - to make mathematics enjoyable and accessible for every child. What began as a small training center with just 20 students has now grown into one of India's leading abacus education providers.
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, lineHeight: 1.7, mb: 2 }}>
+          Over the past decade, we have developed a unique teaching methodology that combines traditional abacus techniques with modern cognitive science. Our approach has helped thousands of children improve their mental math abilities, concentration, and overall academic performance.
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, lineHeight: 1.7 }}>
+          Today, we take pride in our network of certified trainers, comprehensive curriculum, and the success stories of our students who have excelled not just in mathematics, but in all areas of their academic and personal lives.
+        </Typography>
+        <Button variant="contained" sx={{ mt: 3, bgcolor: colors.orange, '&:hover': { bgcolor: colors.orangeDark } }} endIcon={<ArrowForwardIcon />}>
+          Read More About Us
+        </Button>
+      </motion.div>
     </Box>
-    
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      flexWrap: 'wrap',
-      gap: 2,
-    }}>
-      <Typography 
-        variant="body1" 
-        paragraph 
-        color="text.secondary" 
-        sx={{ 
-          fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, 
-          lineHeight: 1.7,
-          mb: 0,
-          wordBreak: 'break-word',
-          flex: '1 1 auto',
-        }}
-      >
-        Founded in 2014, Pro Kidz started with a simple mission - to make mathematics 
-        enjoyable and accessible for every child. What began as a small training center 
-        with just 20 students has now grown into one of India's leading abacus education 
-        providers.
-      </Typography>
-      
-      <Typography 
-        variant="body1" 
-        paragraph 
-        color="text.secondary" 
-        sx={{ 
-          fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, 
-          lineHeight: 1.7,
-          mb: 0,
-          wordBreak: 'break-word',
-          flex: '1 1 auto',
-        }}
-      >
-        Over the past decade, we have developed a unique teaching methodology that combines 
-        traditional abacus techniques with modern cognitive science. Our approach has helped 
-        thousands of children improve their mental math abilities, concentration, and overall 
-        academic performance.
-      </Typography>
-      
-      <Typography 
-        variant="body1" 
-        color="text.secondary" 
-        sx={{ 
-          fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, 
-          lineHeight: 1.7,
-          mb: 0,
-          wordBreak: 'break-word',
-          flex: '1 1 auto',
-        }}
-      >
-        Today, we take pride in our network of certified trainers, comprehensive curriculum, 
-        and the success stories of our students who have excelled not just in mathematics, 
-        but in all areas of their academic and personal lives.
-      </Typography>
-    </Box>
-    
-    <Button 
-      variant="contained" 
-      sx={{ 
-        mt: 3,
-        bgcolor: colors.orange, 
-        '&:hover': { bgcolor: colors.orangeDark },
-        px: { xs: 3, sm: 4 },
-        py: { xs: 1, sm: 1.2 },
-        borderRadius: 2,
-        textTransform: 'none',
-        fontWeight: 600,
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 1,
-        flexWrap: 'wrap',
-      }}
-      endIcon={<ArrowForwardIcon />}
-    >
-      Read More About Us
-    </Button>
-  </motion.div>
-</Grid>
 
-    {/* Image Section - Right (50%) */}
-    <Grid item xs={12} md={6}>
+    {/* Image Section - 40% */}
+    <Box sx={{ width: { xs: '100%', md: '40%' } }}>
       <motion.div
         initial={{ x: 50, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -419,7 +319,309 @@ const About = () => {
           alt="Our Journey"
           sx={{
             width: '100%',
-            height: { xs: '300px', sm: '350px', md: '400px', lg: '450px' },
+            height: { xs: '250px', sm: '300px', md: '400px' },
+            objectFit: 'cover',
+            borderRadius: 4,
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+            transition: 'transform 0.3s',
+            '&:hover': { transform: 'scale(1.02)' },
+          }}
+        />
+      </motion.div>
+    </Box>
+  </Box>
+</Container>
+{imageSections.map((section, idx) => (
+  <Box key={idx} sx={{ bgcolor: idx % 2 === 0 ? 'white' : alpha(colors.orange, 0.03), py: { xs: 6, md: 10 } }}>
+    <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: { xs: 'column', md: section.reverse ? 'row-reverse' : 'row' }, 
+        gap: 4, 
+        alignItems: 'center' 
+      }}>
+        {/* Image Section - 40% */}
+        <Box sx={{ width: { xs: '100%', md: '40%' } }}>
+          <motion.div
+            initial={{ x: section.reverse ? 50 : -50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <Box
+              component="img"
+              src={section.image}
+              alt={section.alt}
+              sx={{
+                width: '100%',
+                height: { xs: '250px', sm: '300px', md: '350px', lg: '400px' },
+                objectFit: 'cover',
+                borderRadius: 4,
+                boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
+                transition: 'transform 0.3s',
+                '&:hover': { transform: 'scale(1.02)' },
+              }}
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1509062522246-3755973927d7?ixlib=rb-4.0.3';
+              }}
+            />
+          </motion.div>
+        </Box>
+        
+        {/* Text Section - 60% */}
+        <Box sx={{ width: { xs: '100%', md: '60%' } }}>
+          <motion.div
+            initial={{ x: section.reverse ? -50 : 50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Typography 
+              variant="h4" 
+              gutterBottom 
+              sx={{ 
+                fontWeight: 700, 
+                color: colors.orange, 
+                fontSize: { xs: '1.6rem', sm: '1.8rem', md: '2rem', lg: '2.2rem' } 
+              }}
+            >
+              {section.title}
+            </Typography>
+            <Typography 
+              variant="body1" 
+              color="text.secondary" 
+              sx={{ 
+                fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, 
+                lineHeight: 1.7,
+                mb: 2,
+              }}
+            >
+              {section.description}
+            </Typography>
+            <Button 
+              variant="text" 
+              sx={{ 
+                mt: 1, 
+                color: colors.orange, 
+                fontSize: '0.95rem',
+                '&:hover': { bgcolor: alpha(colors.orange, 0.1) },
+              }}
+              endIcon={<ArrowForwardIcon />}
+            >
+              Learn More
+            </Button>
+          </motion.div>
+        </Box>
+      </Box>
+    </Container>
+  </Box>
+))}
+
+    
+
+      {/* Mission & Vision - Full Width */}
+     
+    <Container maxWidth="xl" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
+  <Grid container spacing={{ xs: 4, md: 6, lg: 8 }}>
+    {/* Vision Card - Text Left, Image Right (50% - 50%) */}
+    <Grid item xs={12} md={6}>
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Card sx={{ 
+          height: '100%', 
+          overflow: 'hidden', 
+          borderRadius: 4, 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' },
+        }}>
+          {/* Text Content - Left Side - 50% */}
+          <Box sx={{ 
+            flex: '0 0 50%',
+            p: { xs: 3, sm: 4, md: 4 }, 
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}>
+            <VisionIcon sx={{ fontSize: { xs: 50, sm: 60, md: 55 }, color: colors.orange, mb: 2 }} />
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: colors.orange, fontSize: { xs: '1.6rem', sm: '1.8rem', md: '1.8rem', lg: '2rem' } }}>
+              Our Vision
+            </Typography>
+           <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.9rem', md: '0.9rem', lg: '1rem' }, lineHeight: 1.6 }}>
+  To create a world where every child discovers the joy of mathematics and 
+  develops the mental agility to excel in all aspects of life. We envision 
+  becoming the global leader in abacus education, reaching millions of young 
+  minds across the world. Our vision is to transform traditional math learning 
+  into an exciting journey of discovery, where children not only master calculations 
+  but also develop critical thinking, problem-solving skills, and unwavering 
+  self-confidence that stays with them forever.
+</Typography>
+          </Box>
+          
+          {/* Image - Right Side - 50% */}
+          <Box sx={{ flex: '0 0 50%', height: { xs: 200, md: 'auto' } }}>
+            <Box
+              component="img"
+              src={visionImg}
+              alt="Vision"
+              sx={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover',
+                minHeight: { md: 280 },
+              }}
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1509062522246-3755973927d7?ixlib=rb-4.0.3';
+              }}
+            />
+          </Box>
+        </Card>
+      </motion.div>
+    </Grid>
+
+    {/* Mission Card - Text Left, Image Right (50% - 50%) */}
+    <Grid item xs={12} md={6}>
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <Card sx={{ 
+          height: '100%', 
+          overflow: 'hidden', 
+          borderRadius: 4, 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' },
+        }}>
+          {/* Text Content - Left Side - 50% */}
+          <Box sx={{ 
+            flex: '0 0 50%',
+            p: { xs: 3, sm: 4, md: 4 }, 
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}>
+            <TrackChangesIcon sx={{ fontSize: { xs: 50, sm: 60, md: 55 }, color: colors.pink, mb: 2 }} />
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: colors.pink, fontSize: { xs: '1.6rem', sm: '1.8rem', md: '1.8rem', lg: '2rem' } }}>
+              Our Mission
+            </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.9rem', md: '0.9rem', lg: '1rem' }, lineHeight: 1.6 }}>
+  To provide world-class abacus education through innovative teaching methods, 
+  expert trainers, and a supportive learning environment that nurtures each 
+  child's unique potential. We are committed to making mathematics fun, engaging, 
+  and accessible for every child, regardless of their learning pace or background. 
+  Our mission is to build confidence, enhance concentration, and develop lifelong 
+  mathematical skills that will benefit children in all areas of their academic 
+  and personal lives.
+</Typography>
+          </Box>
+          
+          {/* Image - Right Side - 50% */}
+          <Box sx={{ flex: '0 0 50%', height: { xs: 200, md: 'auto' } }}>
+            <Box
+              component="img"
+              src={missionImg}
+              alt="Mission"
+              sx={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover',
+                minHeight: { md: 280 },
+              }}
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3';
+              }}
+            />
+          </Box>
+        </Card>
+      </motion.div>
+    </Grid>
+  </Grid>
+</Container>
+      
+
+      {/* Achievements Section - Full Width */}
+     <Box sx={{ bgcolor: alpha(colors.yellow, 0.1), py: { xs: 6, md: 10 } }}>
+  <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+    <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.orange, fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' } }}>
+      Our Achievements
+    </Typography>
+    <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6, fontSize: { xs: '1rem', md: '1.1rem', lg: '1.25rem' } }}>
+      Numbers that speak for themselves
+    </Typography>
+    
+    {/* Flexbox layout with fixed width cards */}
+    <Box sx={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      flexWrap: 'wrap', 
+      gap: 3,
+    }}>
+      {achievements.map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 }}
+          style={{ width: 220 }}
+        >
+          <Card sx={{ 
+            textAlign: 'center', 
+            p: { xs: 2, sm: 3, md: 3 }, 
+            width: 220,
+            minWidth: 220,
+            maxWidth: 220,
+            height: 240,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderBottom: `4px solid ${item.color}`, 
+            transition: 'transform 0.3s', 
+            '&:hover': { transform: 'translateY(-5px)' },
+            borderRadius: 3,
+          }}>
+            <Box sx={{ color: item.color, fontSize: { xs: 44, sm: 48, md: 52 }, mb: 1.5 }}>
+              {item.icon}
+            </Box>
+            <Typography variant="h4" sx={{ fontWeight: 700, color: item.color, fontSize: { xs: '1.8rem', sm: '2rem', md: '2.2rem' } }}>
+              {item.number}
+            </Typography>
+            <Typography variant="body2" sx={{ fontWeight: 500, fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' }, textAlign: 'center', px: 1 }}>
+              {item.label}
+            </Typography>
+          </Card>
+        </motion.div>
+      ))}
+    </Box>
+  </Container>
+</Box>
+
+      {/* Core Values - Full Width */}
+    <Container maxWidth="xl" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
+  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4, alignItems: 'center' }}>
+    {/* Image - Left Side - 30% width */}
+    <Box sx={{ width: { xs: '100%', md: '30%' } }}>
+      <motion.div
+        initial={{ x: -50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Box
+          component="img"
+          src={coreValuesImg}
+          alt="Our Core Values"
+          sx={{
+            width: '100%',
+            height: { xs: 'auto', md: '400px' },
             objectFit: 'cover',
             borderRadius: 4,
             boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
@@ -427,446 +629,242 @@ const About = () => {
             '&:hover': { transform: 'scale(1.02)' },
           }}
           onError={(e) => {
-            e.target.src = 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3';
+            e.target.src = 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3';
+          }}
+        />
+      </motion.div>
+    </Box>
+
+    {/* Text Content - Right Side - 70% width */}
+    <Box sx={{ width: { xs: '100%', md: '70%' } }}>
+      <motion.div
+        initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        <Box sx={{ mb: 3 }}>
+          <Chip label="Our Principles" sx={{ bgcolor: colors.pink, color: 'white', mb: 2, fontWeight: 600 }} />
+          <Typography 
+            variant="h3" 
+            gutterBottom 
+            sx={{ 
+              fontWeight: 700, 
+              color: colors.pink, 
+              fontSize: { xs: '1.8rem', sm: '2rem', md: '2.2rem', lg: '2.5rem' } 
+            }}
+          >
+            Our Core Values
+          </Typography>
+        </Box>
+        <Typography 
+          variant="h6" 
+          color="text.secondary" 
+          sx={{ 
+            mb: 4, 
+            fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' },
+            lineHeight: 1.5,
+          }}
+        >
+          The principles that guide us every day
+        </Typography>
+
+        <Grid container spacing={{ xs: 2, sm: 2, md: 4.5 }}>
+          {values.map((value, index) => (
+            <Grid item xs={12} sm={6} key={index}>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card 
+  sx={{ 
+    textAlign: 'center', 
+    p: { xs: 1.5, sm: 2, md: 2.5 }, 
+    width: { xs: '100%', sm: 220, md: 240, lg: 280 },
+    minWidth: { xs: '100%', sm: 200, md: 220 },
+    maxWidth: { xs: '100%', sm: 240, md: 260, lg: 280 },
+    height: '100%',
+    minHeight: { xs: 170, sm: 180, md: 180 },
+    transition: 'transform 0.3s', 
+    '&:hover': { transform: 'translateY(-3px)', boxShadow: 4 },
+    bgcolor: alpha(value.color, 0.05),
+    borderTop: `3px solid ${value.color}`,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    mx: 'auto',
+  }}
+>
+  <Box sx={{ color: value.color, fontSize: { xs: 35, sm: 38, md: 40 }, mb: 0.5 }}>
+    {value.icon}
+  </Box>
+  <Typography 
+    variant="subtitle1" 
+    gutterBottom 
+    sx={{ 
+      fontWeight: 600, 
+      fontSize: { xs: '0.9rem', md: '0.95rem', lg: '1rem' },
+      color: value.color,
+    }}
+  >
+    {value.title}
+  </Typography>
+  <Typography 
+    color="text.secondary" 
+    sx={{ fontSize: { xs: '0.7rem', md: '0.75rem', lg: '0.8rem' } }}
+  >
+    {value.description}
+  </Typography>
+</Card>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+      </motion.div>
+    </Box>
+  </Box>
+</Container>
+
+    
+
+      {/* CTA Section - Full Width */}
+   {/* CTA Section - Simple Clean */}
+<Container maxWidth="lg" sx={{bgcolor: alpha(colors.orange, 0.1), py: { xs: 6, sm: 8, md: 8 },borderRadius:"20px" }}>
+  <Grid container spacing={8} alignItems="center" justifyContent="center">
+    
+    {/* Left Side - Image */}
+    <Grid item xs={12} md={5}>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Box
+          component="img"
+          src={ctaImage}
+          alt="Train Your Brain"
+          sx={{
+            width: '100%',
+            maxWidth: 300,
+            height: 'auto',
+            mx: 'auto',
+            display: 'block',
+          }}
+          onError={(e) => {
+            e.target.src = 'https://cdn-icons-png.flaticon.com/512/3037/3037653.png';
           }}
         />
       </motion.div>
     </Grid>
-  </Grid>
-</Container>
 
-      {/* Alternating Image/Text Sections - Full Width */}
-      {imageSections.map((section, idx) => (
-        <Box key={idx} sx={{ bgcolor: idx % 2 === 0 ? 'white' : alpha(colors.orange, 0.03), py: { xs: 6, md: 10 } }}>
-          <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-            <Grid container spacing={{ xs: 4, md: 6, lg: 8 }} alignItems="center" direction={section.reverse ? 'row-reverse' : 'row'}>
-              <Grid item xs={12} md={6}>
-                <motion.div
-                  initial={{ x: section.reverse ? 50 : -50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Box
-                    component="img"
-                    src={section.image}
-                    alt={section.alt}
-                    sx={{
-                      width: '100%',
-                      height: { xs: 'auto', md: '400px', lg: '450px' },
-                      objectFit: 'cover',
-                      borderRadius: 4,
-                      boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-                      transition: 'transform 0.3s',
-                      '&:hover': { transform: 'scale(1.02)' },
-                    }}
-                    onError={(e) => {
-                      e.target.src = 'https://images.unsplash.com/photo-1509062522246-3755973927d7?ixlib=rb-4.0.3';
-                    }}
-                  />
-                </motion.div>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <motion.div
-                  initial={{ x: section.reverse ? -50 : 50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: colors.orange, mb: 2, fontSize: { xs: '1.6rem', sm: '1.8rem', md: '2rem', lg: '2.2rem' } }}>
-                    {section.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.05rem', lg: '1.1rem' }, lineHeight: 1.7 }}>
-                    {section.description}
-                  </Typography>
-                  <Button 
-                    variant="text" 
-                    sx={{ mt: 2, color: colors.orange, fontSize: '1rem' }}
-                    endIcon={<ArrowForwardIcon />}
-                  >
-                    Learn More
-                  </Button>
-                </motion.div>
-              </Grid>
-            </Grid>
-          </Container>
-        </Box>
-      ))}
-
-      {/* Milestones Timeline - Full Width */}
-      <Box sx={{ bgcolor: alpha(colors.orange, 0.05), py: { xs: 6, md: 10 } }}>
-        <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-          <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.orange, fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' } }}>
-            Our Milestones
+    {/* Right Side - Content */}
+    <Grid item xs={12} md={7}>
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Box>
+          {/* Heading */}
+          <Typography
+            variant="h2"
+            sx={{
+              fontWeight: 800,
+              fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+              color: colors.orange,
+              mb: 1,
+            }}
+          >
+            TRAIN YOUR BRAIN
           </Typography>
-          <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6, fontSize: { xs: '1rem', md: '1.1rem', lg: '1.25rem' } }}>
-            A journey of excellence and growth
+          
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: '1.3rem', sm: '1.5rem', md: '1.8rem' },
+              color: colors.orangeDark,
+              mb: 3,
+            }}
+          >
+            THE ABACUS WAY!
           </Typography>
-          <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
-            {milestones.map((milestone, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Paper 
-                    sx={{ 
-                      p: { xs: 2, sm: 3, md: 4 }, 
-                      textAlign: 'center',
-                      height: '100%',
-                      borderTop: `4px solid ${index % 3 === 0 ? colors.orange : index % 3 === 1 ? colors.yellow : colors.pink}`,
-                      transition: 'transform 0.3s, box-shadow 0.3s',
-                      '&:hover': { transform: 'translateY(-8px)', boxShadow: 6 },
-                    }}
-                  >
-                    <Box sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: index % 3 === 0 ? colors.orange : index % 3 === 1 ? colors.yellow : colors.pink, mb: 2 }}>
-                      {milestone.icon}
-                    </Box>
-                    <Typography variant="h4" sx={{ fontWeight: 700, color: colors.orange, mb: 1, fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem', lg: '2.2rem' } }}>
-                      {milestone.year}
-                    </Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' } }}>
-                      {milestone.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: { xs: '0.85rem', md: '0.9rem' } }}>
-                      {milestone.description}
-                    </Typography>
-                  </Paper>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* Mission & Vision - Full Width */}
-      <Container maxWidth="xl" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
-        <Grid container spacing={{ xs: 4, md: 6, lg: 8 }}>
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <Card sx={{ height: '100%', overflow: 'hidden', borderRadius: 4 }}>
-                <Box
-                  component="img"
-                  src={visionImg}
-                  alt="Vision"
-                  sx={{ width: '100%', height: { xs: 200, sm: 240, md: 260 }, objectFit: 'cover' }}
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1509062522246-3755973927d7?ixlib=rb-4.0.3';
-                  }}
-                />
-                <Box sx={{ p: { xs: 3, sm: 4, md: 5 }, textAlign: 'center' }}>
-                  <VisionIcon sx={{ fontSize: { xs: 50, sm: 60, md: 70 }, color: colors.orange, mb: 2 }} />
-                  <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: colors.orange, fontSize: { xs: '1.6rem', sm: '1.8rem', md: '2rem', lg: '2.2rem' } }}>
-                    Our Vision
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, lineHeight: 1.7 }}>
-                    To create a world where every child discovers the joy of mathematics and 
-                    develops the mental agility to excel in all aspects of life. We envision 
-                    becoming the global leader in abacus education.
-                  </Typography>
-                </Box>
-              </Card>
-            </motion.div>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <Card sx={{ height: '100%', overflow: 'hidden', borderRadius: 4 }}>
-                <Box
-                  component="img"
-                  src={missionImg}
-                  alt="Mission"
-                  sx={{ width: '100%', height: { xs: 200, sm: 240, md: 260 }, objectFit: 'cover' }}
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3';
-                  }}
-                />
-                <Box sx={{ p: { xs: 3, sm: 4, md: 5 }, textAlign: 'center' }}>
-                  <TrackChangesIcon sx={{ fontSize: { xs: 50, sm: 60, md: 70 }, color: colors.pink, mb: 2 }} />
-                  <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: colors.pink, fontSize: { xs: '1.6rem', sm: '1.8rem', md: '2rem', lg: '2.2rem' } }}>
-                    Our Mission
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.95rem', md: '1rem', lg: '1.05rem' }, lineHeight: 1.7 }}>
-                    To provide world-class abacus education through innovative teaching methods, 
-                    expert trainers, and a supportive learning environment that nurtures each 
-                    child's unique potential.
-                  </Typography>
-                </Box>
-              </Card>
-            </motion.div>
-          </Grid>
-        </Grid>
-      </Container>
-
-      {/* Achievements Section - Full Width */}
-      <Box sx={{ bgcolor: alpha(colors.yellow, 0.1), py: { xs: 6, md: 10 } }}>
-        <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-          <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.orange, fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' } }}>
-            Our Achievements
-          </Typography>
-          <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6, fontSize: { xs: '1rem', md: '1.1rem', lg: '1.25rem' } }}>
-            Numbers that speak for themselves
-          </Typography>
-          <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
-            {achievements.map((item, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card sx={{ textAlign: 'center', p: { xs: 2, sm: 3, md: 4 }, borderBottom: `4px solid ${item.color}`, transition: 'transform 0.3s', '&:hover': { transform: 'translateY(-5px)' }, height: '100%' }}>
-                    <Box sx={{ color: item.color, fontSize: { xs: 44, sm: 50, md: 56 }, mb: 2 }}>
-                      {item.icon}
-                    </Box>
-                    <Typography variant="h3" sx={{ fontWeight: 700, color: item.color, fontSize: { xs: '1.8rem', sm: '2rem', md: '2.2rem', lg: '2.5rem' } }}>
-                      {item.number}
-                    </Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 500, fontSize: { xs: '0.9rem', sm: '1rem', md: '1.05rem' } }}>{item.label}</Typography>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* Core Values - Full Width */}
-      <Container maxWidth="xl" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
-        <Grid container spacing={{ xs: 4, md: 6, lg: 8 }} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <Box
-                component="img"
-                src={coreValuesImg}
-                alt="Our Core Values"
+          
+          {/* Benefits */}
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
+            {['Better Focus', 'Fast Calculations', 'Sharp Memory', 'High Confidence'].map((item, i) => (
+              <Typography
+                key={i}
                 sx={{
-                  width: '100%',
-                  height: { xs: 'auto', md: '450px', lg: '500px' },
-                  objectFit: 'cover',
-                  borderRadius: 4,
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.3s',
-                  '&:hover': { transform: 'scale(1.02)' },
-                }}
-                onError={(e) => {
-                  e.target.src = 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3';
-                }}
-              />
-            </motion.div>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <Box sx={{ mb: 3 }}>
-                <Chip label="Our Principles" sx={{ bgcolor: colors.pink, color: 'white', mb: 2, fontWeight: 600 }} />
-                <Typography 
-                  variant="h3" 
-                  gutterBottom 
-                  sx={{ 
-                    fontWeight: 700, 
-                    color: colors.pink, 
-                    fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' } 
-                  }}
-                >
-                  Our Core Values
-                </Typography>
-              </Box>
-              <Typography 
-                variant="h6" 
-                color="text.secondary" 
-                sx={{ 
-                  mb: 4, 
-                  fontSize: { xs: '1rem', md: '1.05rem', lg: '1.1rem' },
-                  lineHeight: 1.6,
+                  color: colors.gray,
+                  fontWeight: 500,
+                  fontSize: '0.95rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 0.5,
                 }}
               >
-                The principles that guide us every day
+                ✓ {item}
               </Typography>
-
-              <Grid container spacing={{ xs: 2, sm: 2, md: 3 }}>
-                {values.map((value, index) => (
-                  <Grid item xs={12} sm={6} key={index}>
-                    <motion.div
-                      initial={{ y: 30, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Card 
-                        sx={{ 
-                          textAlign: 'center', 
-                          p: { xs: 2, sm: 2.5, md: 3 }, 
-                          height: '100%', 
-                          transition: 'transform 0.3s', 
-                          '&:hover': { transform: 'translateY(-5px)', boxShadow: 6 },
-                          bgcolor: alpha(value.color, 0.05),
-                          borderTop: `3px solid ${value.color}`,
-                        }}
-                      >
-                        <Box sx={{ color: value.color, fontSize: { xs: 40, sm: 42, md: 45 }, mb: 1 }}>
-                          {value.icon}
-                        </Box>
-                        <Typography 
-                          variant="h6" 
-                          gutterBottom 
-                          sx={{ 
-                            fontWeight: 600, 
-                            fontSize: { xs: '1rem', md: '1.05rem', lg: '1.1rem' },
-                            color: value.color,
-                          }}
-                        >
-                          {value.title}
-                        </Typography>
-                        <Typography 
-                          color="text.secondary" 
-                          sx={{ fontSize: { xs: '0.8rem', md: '0.85rem' } }}
-                        >
-                          {value.description}
-                        </Typography>
-                      </Card>
-                    </motion.div>
-                  </Grid>
-                ))}
-              </Grid>
-            </motion.div>
-          </Grid>
-        </Grid>
-      </Container>
-
-      {/* Team Section - Full Width */}
-      <Box sx={{ bgcolor: alpha(colors.pink, 0.05), py: { xs: 6, md: 10 } }}>
-        <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-          <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.orange, fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem', lg: '3rem' } }}>
-            Meet Our Expert Team
-          </Typography>
-          <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6, fontSize: { xs: '1rem', md: '1.1rem', lg: '1.25rem' } }}>
-            Dedicated experts committed to your child's success
-          </Typography>
-          <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
-            {teamMembers.map((member, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card sx={{ textAlign: 'center', p: { xs: 2, sm: 3 }, height: '100%', borderRadius: 4, transition: 'transform 0.3s', '&:hover': { transform: 'translateY(-8px)' } }}>
-                    <Avatar
-                      src={member.image}
-                      sx={{ width: { xs: 100, sm: 120, md: 130 }, height: { xs: 100, sm: 120, md: 130 }, mx: 'auto', mb: 2, border: `4px solid ${colors.orange}` }}
-                    >
-                      {member.name.charAt(0)}
-                    </Avatar>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' } }}>
-                      {member.name}
-                    </Typography>
-                    <Chip 
-                      label={member.role} 
-                      size="small" 
-                      sx={{ bgcolor: colors.orange, color: 'white', mb: 1, fontSize: { xs: '0.7rem', sm: '0.75rem' } }} 
-                    />
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1, fontSize: { xs: '0.8rem', sm: '0.85rem' } }}>
-                      {member.qualification}
-                    </Typography>
-                    <Chip 
-                      label={member.experience} 
-                      size="small" 
-                      variant="outlined"
-                      sx={{ borderColor: colors.yellow, color: colors.orangeDark, mb: 1, fontSize: { xs: '0.7rem', sm: '0.75rem' } }}
-                    />
-                    <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: { xs: '0.7rem', sm: '0.75rem' } }}>
-                      🏆 {member.achievements}
-                    </Typography>
-                  </Card>
-                </motion.div>
-              </Grid>
             ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* CTA Section - Full Width */}
-      <Box sx={{ bgcolor: colors.orange, py: { xs: 6, md: 10 } }}>
-        <Container maxWidth="lg">
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
+          </Box>
+          
+          {/* Tagline */}
+          <Typography
+            sx={{
+              fontWeight: 600,
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+              color: colors.orange,
+              mb: 4,
+              letterSpacing: 1,
+            }}
           >
-            <Paper
+            BUILD SKILLS. BUILD CONFIDENCE. BUILD FUTURE!
+          </Typography>
+          
+          {/* Buttons */}
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+            <Button
+              variant="contained"
+              size="large"
               sx={{
-                p: { xs: 3, sm: 4, md: 6 },
-                bgcolor: colors.yellow,
-                color: colors.orangeDark,
-                textAlign: 'center',
-                borderRadius: 4,
-                boxShadow: 8,
+                bgcolor: colors.orange,
+                color: colors.white,
+                px: 4,
+                py: 1,
+                fontWeight: 700,
+                borderRadius: 2,
+                '&:hover': { bgcolor: colors.orangeDark },
               }}
             >
-              <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '1.6rem', sm: '2rem', md: '2.5rem', lg: '3rem' } }}>
-                Join the Pro Kidz Family!
-              </Typography>
-              <Typography variant="h6" sx={{ mb: 4, opacity: 0.9, fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' } }}>
-                Give your child the gift of mathematical excellence
-              </Typography>
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-                <Button 
-                  variant="contained" 
-                  size="large"
-                  sx={{ 
-                    bgcolor: colors.orange, 
-                    color: 'white',
-                    '&:hover': { bgcolor: colors.orangeDark },
-                    px: { xs: 3, sm: 4, md: 5 },
-                    py: { xs: 1, sm: 1.2, md: 1.5 },
-                    fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
-                  }}
-                >
-                  Start Free Trial
-                </Button>
-                <Button 
-                  variant="outlined" 
-                  size="large"
-                  sx={{ 
-                    color: colors.orange, 
-                    borderColor: colors.orange,
-                    '&:hover': { bgcolor: alpha(colors.orange, 0.1) },
-                    px: { xs: 3, sm: 4, md: 5 },
-                    py: { xs: 1, sm: 1.2, md: 1.5 },
-                    fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
-                  }}
-                >
-                  Book a Demo
-                </Button>
-              </Stack>
-            </Paper>
-          </motion.div>
-        </Container>
-      </Box>
+              Start Free Trial
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              sx={{
+                color: colors.orange,
+                borderColor: colors.orange,
+                px: 4,
+                py: 1,
+                fontWeight: 700,
+                borderRadius: 2,
+                '&:hover': { bgcolor: alpha(colors.orange, 0.1) },
+              }}
+            >
+              Book a Demo
+            </Button>
+          </Stack>
+        </Box>
+      </motion.div>
+    </Grid>
+  </Grid>
+</Container>
     </Box>
   );
 };

@@ -49,14 +49,14 @@ import MemoryIcon from '@mui/icons-material/Memory';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
 // Import local images (create these folders and add your images)
-import abacusBeginnerImg from './assets/images/abacus-beginner.jpg';
-import abacusIntermediateImg from './assets/images/abacus-intermediate.jpg';
-import abacusAdvancedImg from './assets/images/abacus-advanced.jpg';
-import teacherTrainingImg from './assets/images/teacher-training.jpg';
-import vedicMathImg from './assets/images/vedic-math.jpg';
-import summerCampImg from './assets/images/summer-camp.jpg';
-import heroBgImg from './assets/images/hero-bg.jpg';
-import whyUsImg from './assets/images/why-us.jpg';
+import abacusBeginnerImg from '../assets/27.png';
+import abacusIntermediateImg from '../assets/28.png';
+import abacusAdvancedImg from '../assets/27.png';
+import teacherTrainingImg from '../assets/30.png';
+import vedicMathImg from '../assets/29.png';
+import summerCampImg from '../assets/30.png';
+import heroBgImg from '../assets/21.png';
+import whyUsImg from '../assets/21.png';
 
 const Courses = () => {
   const [level, setLevel] = useState('all');
@@ -236,7 +236,7 @@ const Courses = () => {
             borderRadius: '0 0 60px 60px',
           }}
         >
-          <Container maxWidth="lg">
+          <Container maxWidth="xl">
             <motion.div
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -375,199 +375,232 @@ const Courses = () => {
           </Typography>
 
           {/* Courses Grid */}
-          <Grid container spacing={4}>
-            {filteredCourses.map((course, index) => (
-              <Grid item xs={12} md={6} key={course.id}>
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
+        {/* Courses Grid */}
+<Grid container spacing={4}>
+  {filteredCourses.map((course, index) => (
+    <Grid item xs={12} key={course.id}>
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: index * 0.1 }}
+        viewport={{ once: true }}
+      >
+        <Card 
+          sx={{ 
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            borderRadius: 4,
+            overflow: 'hidden',
+            transition: 'transform 0.3s, box-shadow 0.3s',
+            '&:hover': {
+              transform: 'translateY(-5px)',
+              boxShadow: 8,
+            },
+            position: 'relative',
+          }}
+        >
+          {/* Age Badge */}
+          <Chip
+            label={`Ages: ${course.ageRange}`}
+            sx={{
+              position: 'absolute',
+              top: 16,
+              right: 16,
+              zIndex: 2,
+              bgcolor: colors.orange,
+              color: 'white',
+              fontWeight: 600,
+            }}
+          />
+          
+          {/* Course Image - Left Side */}
+          <Box
+            sx={{
+              width: { xs: '100%', md: 400 },
+              position: 'relative',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+            onClick={() => handleOpenModal(course)}
+          >
+            <CardMedia
+              component="img"
+              sx={{ 
+                width: '100%', 
+                height: { xs: 200, md: '100%' },
+                minHeight: { md: 280 },
+                objectFit: 'cover',
+                transition: 'transform 0.5s',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                },
+              }}
+              image={course.image}
+              alt={course.title}
+            />
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                bgcolor: alpha(colors.orange, 0.5),
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                opacity: 0,
+                transition: 'opacity 0.3s',
+                '&:hover': {
+                  opacity: 1,
+                },
+              }}
+            >
+              <PlayCircleIcon sx={{ fontSize: 60, color: 'white' }} />
+            </Box>
+          </Box>
+
+          {/* Course Content - Right Side */}
+          <CardContent sx={{ flex: 1, p: 3 }}>
+            <Typography variant="h5" gutterBottom sx={{ fontWeight: 800, color: course.color }}>
+              {course.displayTitle}
+            </Typography>
+            
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              {course.description}
+            </Typography>
+
+            <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+              <Chip 
+                icon={<AccessTimeIcon />} 
+                label={course.duration} 
+                size="small"
+                sx={{ bgcolor: alpha(course.color, 0.1), color: course.color }}
+              />
+              <Chip 
+                icon={<GroupIcon />} 
+                label={`${course.students}+ learners`} 
+                size="small"
+                sx={{ bgcolor: alpha(course.color, 0.1), color: course.color }}
+              />
+              <Chip 
+                icon={<EmojiEventsIcon />} 
+                label="Certificate" 
+                size="small"
+                sx={{ bgcolor: alpha(course.color, 0.1), color: course.color }}
+              />
+            </Box>
+
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+              <Rating value={course.rating} precision={0.1} readOnly size="small" />
+              <Typography variant="body2" color="text.secondary">
+                ({course.rating})
+              </Typography>
+              <Box sx={{ ml: 'auto' }}>
+                <Typography variant="body2" sx={{ textDecoration: 'line-through', color: 'text.disabled' }}>
+                  {course.originalPrice}
+                </Typography>
+                <Typography variant="h6" sx={{ fontWeight: 700, color: course.color }}>
+                  {course.price}
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* Benefits */}
+            <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+              {course.benefits.slice(0, 2).map((benefit, idx) => (
+                <Chip 
+                  key={idx} 
+                  icon={<StarIcon sx={{ fontSize: 16 }} />}
+                  label={benefit} 
+                  size="small" 
+                  sx={{ 
+                    bgcolor: alpha(colors.orange, 0.1),
+                    color: colors.orange,
+                    fontSize: '0.7rem',
+                  }} 
+                />
+              ))}
+            </Box>
+
+            {/* Topics Preview */}
+            <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, mt: 1 }}>
+              What you'll learn:
+            </Typography>
+            <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {course.topics.slice(0, 3).map((topic, idx) => (
+                <Chip 
+                  key={idx} 
+                  label={topic} 
+                  size="small" 
+                  sx={{ 
+                    bgcolor: alpha(course.color, 0.1),
+                    color: course.color,
+                    fontSize: '0.7rem',
+                  }} 
+                />
+              ))}
+              {course.topics.length > 3 && (
+                <Chip 
+                  label={`+${course.topics.length - 3} more`} 
+                  size="small" 
+                  variant="outlined"
+                />
+              )}
+            </Box>
+
+            <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+              <Button 
+                variant="contained" 
+                fullWidth
+                onClick={() => handleEnrollNow(course)}
+                sx={{ 
+                  bgcolor: course.color,
+                  '&:hover': { bgcolor: course.color === colors.orange ? colors.orangeDark : course.color },
+                }}
+              >
+                Enroll Now
+              </Button>
+              <Button 
+                variant="outlined"
+                fullWidth
+                onClick={() => handleOpenModal(course)}
+                sx={{ 
+                  borderColor: course.color,
+                  color: course.color,
+                }}
+              >
+                View Details
+              </Button>
+            </Stack>
+
+            {/* Email input for enrollment */}
+            {showEmailInput && selectedEnrollCourse?.id === course.id && (
+              <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
+                <TextField
+                  size="small"
+                  placeholder="Enter your email"
+                  value={enrollEmail}
+                  onChange={(e) => setEnrollEmail(e.target.value)}
+                  fullWidth
+                />
+                <Button 
+                  variant="contained" 
+                  size="small"
+                  onClick={handleSubmitEnroll}
+                  sx={{ bgcolor: colors.orange }}
                 >
-                  <Card 
-                    sx={{ 
-                      borderRadius: 4,
-                      overflow: 'hidden',
-                      transition: 'transform 0.3s, box-shadow 0.3s',
-                      '&:hover': {
-                        transform: 'translateY(-5px)',
-                        boxShadow: 8,
-                      },
-                      position: 'relative',
-                    }}
-                  >
-                    {/* Age Badge - From image */}
-                    <Chip
-                      label={`Ages: ${course.ageRange}`}
-                      sx={{
-                        position: 'absolute',
-                        top: 16,
-                        right: 16,
-                        zIndex: 1,
-                        bgcolor: colors.orange,
-                        color: 'white',
-                        fontWeight: 600,
-                      }}
-                    />
-                    
-                    {/* Course Image */}
-                    <Box
-                      sx={{
-                        position: 'relative',
-                        overflow: 'hidden',
-                        cursor: 'pointer',
-                      }}
-                      onClick={() => handleOpenModal(course)}
-                    >
-                      <CardMedia
-                        component="img"
-                        sx={{ 
-                          width: '100%', 
-                          height: 220, 
-                          objectFit: 'cover',
-                          transition: 'transform 0.5s',
-                          '&:hover': {
-                            transform: 'scale(1.05)',
-                          },
-                        }}
-                        image={course.image}
-                        alt={course.title}
-                      />
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          bgcolor: alpha(colors.orange, 0.5),
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          opacity: 0,
-                          transition: 'opacity 0.3s',
-                          '&:hover': {
-                            opacity: 1,
-                          },
-                        }}
-                      >
-                        <PlayCircleIcon sx={{ fontSize: 60, color: 'white' }} />
-                      </Box>
-                    </Box>
-
-                    <CardContent sx={{ p: 3 }}>
-                      <Typography variant="h5" gutterBottom sx={{ fontWeight: 800, color: course.color }}>
-                        {course.displayTitle}
-                      </Typography>
-                      
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        {course.description}
-                      </Typography>
-
-                      <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                        <Chip 
-                          icon={<AccessTimeIcon />} 
-                          label={course.duration} 
-                          size="small"
-                          sx={{ bgcolor: alpha(course.color, 0.1), color: course.color }}
-                        />
-                        <Chip 
-                          icon={<GroupIcon />} 
-                          label={`${course.students}+ learners`} 
-                          size="small"
-                          sx={{ bgcolor: alpha(course.color, 0.1), color: course.color }}
-                        />
-                        <Chip 
-                          icon={<EmojiEventsIcon />} 
-                          label="Certificate" 
-                          size="small"
-                          sx={{ bgcolor: alpha(course.color, 0.1), color: course.color }}
-                        />
-                      </Box>
-
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-                        <Rating value={course.rating} precision={0.1} readOnly size="small" />
-                        <Typography variant="body2" color="text.secondary">
-                          ({course.rating})
-                        </Typography>
-                        <Box sx={{ ml: 'auto' }}>
-                          <Typography variant="body2" sx={{ textDecoration: 'line-through', color: 'text.disabled' }}>
-                            {course.originalPrice}
-                          </Typography>
-                          <Typography variant="h6" sx={{ fontWeight: 700, color: course.color }}>
-                            {course.price}
-                          </Typography>
-                        </Box>
-                      </Box>
-
-                      {/* Benefits from image */}
-                      <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {course.benefits.slice(0, 2).map((benefit, idx) => (
-                          <Chip 
-                            key={idx} 
-                            icon={<StarIcon sx={{ fontSize: 16 }} />}
-                            label={benefit} 
-                            size="small" 
-                            sx={{ 
-                              bgcolor: alpha(colors.orange, 0.1),
-                              color: colors.orange,
-                              fontSize: '0.7rem',
-                            }} 
-                          />
-                        ))}
-                      </Box>
-
-                      <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-                        <Button 
-                          variant="contained" 
-                          fullWidth
-                          onClick={() => handleEnrollNow(course)}
-                          sx={{ 
-                            bgcolor: course.color,
-                            '&:hover': { bgcolor: course.color === colors.orange ? colors.orangeDark : course.color },
-                          }}
-                        >
-                          Enroll Now
-                        </Button>
-                        <Button 
-                          variant="outlined"
-                          fullWidth
-                          onClick={() => handleOpenModal(course)}
-                          sx={{ 
-                            borderColor: course.color,
-                            color: course.color,
-                          }}
-                        >
-                          View Details
-                        </Button>
-                      </Stack>
-
-                      {/* Email input for enrollment */}
-                      {showEmailInput && selectedEnrollCourse?.id === course.id && (
-                        <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
-                          <TextField
-                            size="small"
-                            placeholder="Enter your email"
-                            value={enrollEmail}
-                            onChange={(e) => setEnrollEmail(e.target.value)}
-                            fullWidth
-                          />
-                          <Button 
-                            variant="contained" 
-                            size="small"
-                            onClick={handleSubmitEnroll}
-                            sx={{ bgcolor: colors.orange }}
-                          >
-                            Submit
-                          </Button>
-                        </Box>
-                      )}
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
+                  Submit
+                </Button>
+              </Box>
+            )}
+          </CardContent>
+        </Card>
+      </motion.div>
+    </Grid>
+  ))}
+</Grid>
 
           {/* No Courses Found */}
           {filteredCourses.length === 0 && (
@@ -673,9 +706,9 @@ const Courses = () => {
                 size="large"
                 onClick={handleBookDemo}
                 sx={{ 
-                  bgcolor: 'white', 
+                  bgcolor: '#fff', 
                   color: colors.orange,
-                  '&:hover': { bgcolor: alpha('white', 0.9) },
+                  '&:hover': { bgcolor: alpha('#fff', 0.9) },
                   px: 6,
                   py: 1.5,
                   fontSize: '1.2rem',
@@ -691,64 +724,7 @@ const Courses = () => {
           </motion.div>
         </Container>
 
-        {/* Footer / Contact Section - From image */}
-        <Box sx={{ bgcolor: colors.darkBlue, color: 'white', py: 6, mt: 4 }}>
-          <Container>
-            <Grid container spacing={4}>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h4" gutterBottom sx={{ fontWeight: 800 }}>
-                  PRO KIDZ
-                </Typography>
-                <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
-                  Empowering Young Minds for a Bright Future!
-                </Typography>
-                <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-                  Follow Us:
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                  <IconButton sx={{ color: 'white' }}><FacebookIcon /></IconButton>
-                  <IconButton sx={{ color: 'white' }}><InstagramIcon /></IconButton>
-                  <IconButton sx={{ color: 'white' }}><LinkedInIcon /></IconButton>
-                  <IconButton sx={{ color: 'white' }}><TwitterIcon /></IconButton>
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
-                  CONTACT US
-                </Typography>
-                <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                  <LocalPhoneIcon fontSize="small" /> +91 12345 67890
-                </Typography>
-                <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                  <EmailIcon fontSize="small" /> info@prokidz.com
-                </Typography>
-                <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                  <LocationOnIcon fontSize="small" /> 123, Education Street, Learning City, India
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 2 }}>
-                  www.prokidz.com
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
-                  CONTACT US TODAY!
-                </Typography>
-                <Button 
-                  variant="contained" 
-                  fullWidth
-                  onClick={handleBookDemo}
-                  sx={{ bgcolor: colors.orange, mt: 2 }}
-                >
-                  Get Started
-                </Button>
-              </Grid>
-            </Grid>
-            <Divider sx={{ my: 3, bgcolor: alpha('white', 0.2) }} />
-            <Typography variant="body2" align="center" sx={{ opacity: 0.7 }}>
-              © 2024 Pro Kidz. All rights reserved. | Empowering Young Minds for a Bright Future!
-            </Typography>
-          </Container>
-        </Box>
+     
       </Box>
 
       {/* Course Details Modal */}

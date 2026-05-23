@@ -82,38 +82,7 @@ const Contact = () => {
     },
   ];
 
-  const faqs = [
-    {
-      question: 'What is the minimum age for abacus training?',
-      answer: 'Children aged 5 years and above can start abacus training. We have special programs designed for different age groups.',
-      color: colors.orange,
-    },
-    {
-      question: 'Do you offer online classes?',
-      answer: 'Yes, we offer both online and offline classes. Our online platform provides interactive sessions with real-time feedback.',
-      color: colors.yellow,
-    },
-    {
-      question: 'How long does it take to complete a level?',
-      answer: 'Each level typically takes 3-4 months with regular practice. We offer flexible schedules to suit your convenience.',
-      color: colors.pink,
-    },
-    {
-      question: 'Is there a demo class available?',
-      answer: 'Absolutely! We offer a free demo class for all new students. Contact us to schedule your demo session.',
-      color: colors.orange,
-    },
-    {
-      question: 'What is the fee structure?',
-      answer: 'We have flexible pricing plans starting from ₹2,999/month. Contact us for detailed fee structure.',
-      color: colors.yellow,
-    },
-    {
-      question: 'Do you provide certificates?',
-      answer: 'Yes, students receive internationally recognized certificates upon completion of each level.',
-      color: colors.pink,
-    },
-  ];
+ 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -482,102 +451,9 @@ const Contact = () => {
         </motion.div>
       </Container>
 
-      {/* FAQ Section with Orange, Yellow, Pink Colors */}
-      <Box sx={{ bgcolor: alpha(colors.pink, 0.05), py: 8 }}>
-        <Container maxWidth="lg">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <Chip 
-              label="FAQ" 
-              sx={{ bgcolor: alpha(colors.yellow, 0.2), color: colors.yellowDark, mx: 'auto', display: 'table', mb: 2 }} 
-            />
-            <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.pink }}>
-              Frequently Asked Questions
-            </Typography>
-            <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6 }}>
-              Quick answers to common questions
-            </Typography>
-          </motion.div>
+     
 
-          <Grid container spacing={3}>
-            {faqs.map((faq, index) => (
-              <Grid item xs={12} md={6} key={index}>
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card sx={{ p: 3, height: '100%', borderLeft: `4px solid ${faq.color}`, borderRadius: 2 }}>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: faq.color }}>
-                      {faq.question}
-                    </Typography>
-                    <Typography color="text.secondary">
-                      {faq.answer}
-                    </Typography>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* CTA Section */}
-      <Container sx={{ py: 8 }}>
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <Paper
-            sx={{
-              p: { xs: 4, md: 6 },
-              bgcolor: colors.yellow,
-              color: colors.orangeDark,
-              textAlign: 'center',
-              borderRadius: 4,
-            }}
-          >
-            <Typography variant="h3" gutterBottom sx={{ fontWeight: 700 }}>
-              Ready to Get Started?
-            </Typography>
-            <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-              Book a free demo class and see the difference yourself
-            </Typography>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-              <Button 
-                variant="contained" 
-                size="large"
-                sx={{ 
-                  bgcolor: colors.orange, 
-                  color: 'white',
-                  '&:hover': { bgcolor: colors.orangeDark },
-                  px: 4,
-                  fontWeight: 700,
-                }}
-              >
-                Book Free Demo
-              </Button>
-              <Button 
-                variant="outlined" 
-                size="large"
-                sx={{ 
-                  color: colors.orange, 
-                  borderColor: colors.orange,
-                  '&:hover': { bgcolor: alpha(colors.orange, 0.1) },
-                  px: 4,
-                }}
-              >
-                Call Now: +91 98765 43210
-              </Button>
-            </Stack>
-          </Paper>
-        </motion.div>
-      </Container>
+   
 
       {/* Snackbar for form submission */}
       <Snackbar
