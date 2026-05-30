@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 // Colors matching Home page theme
@@ -35,6 +35,7 @@ const colors = {
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 900px)');
+  const location = useLocation(); // Get current route
 
   const menuItems = [
     { text: 'Home', path: '/' },
@@ -43,6 +44,14 @@ const Navbar = () => {
     { text: 'Pricing', path: '/pricing' },
     { text: 'Contact', path: '/contact' },
   ];
+
+  // Helper function to check if a menu item is active
+  const isActive = (path) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(path);
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -79,6 +88,9 @@ const Navbar = () => {
               mb: 1,
               borderRadius: 3,
               transition: '0.3s',
+              // Active state styling for mobile
+              bgcolor: isActive(item.path) ? alpha(colors.orange, 0.1) : 'transparent',
+              borderLeft: isActive(item.path) ? `3px solid ${colors.orange}` : '3px solid transparent',
               '&:hover': {
                 bgcolor: alpha(colors.orange, 0.1),
                 transform: 'translateX(5px)',
@@ -88,9 +100,9 @@ const Navbar = () => {
             <ListItemText
               primary={item.text}
               primaryTypographyProps={{
-                fontWeight: 600,
+                fontWeight: isActive(item.path) ? 700 : 600,
                 fontSize: '1rem',
-                color: colors.black,
+                color: isActive(item.path) ? colors.orange : colors.black,
               }}
             />
           </ListItem>
@@ -133,7 +145,7 @@ const Navbar = () => {
         }}
       >
         <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 1 }}>
+          <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 2 }}>
             {/* Logo */}
             <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
               <Box component="img" src={logo} alt="ProKidz Logo" sx={{ height: { xs: 45, md: 55 }, objectFit: 'contain' }} />
@@ -148,12 +160,25 @@ const Navbar = () => {
                     component={RouterLink}
                     to={item.path}
                     sx={{
-                      color: colors.black,
-                      fontWeight: 600,
+                      color: isActive(item.path) ? colors.orange : colors.black,
+                      fontWeight: isActive(item.path) ? 700 : 600,
                       px: 2,
                       py: 1,
                       borderRadius: 2,
                       transition: '0.3s',
+                      position: 'relative',
+                      // Add underline indicator for active state
+                      '&::after': isActive(item.path) ? {
+                        content: '""',
+                        position: 'absolute',
+                        bottom: 0,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '30px',
+                        height: '3px',
+                        bgcolor: colors.orange,
+                        borderRadius: '3px',
+                      } : {},
                       '&:hover': {
                         color: colors.orange,
                         bgcolor: alpha(colors.orange, 0.05),

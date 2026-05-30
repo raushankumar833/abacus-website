@@ -1,468 +1,702 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Container,
   Typography,
-  Grid,
   Card,
-  CardContent,
   TextField,
   Button,
   IconButton,
   Snackbar,
   Alert,
-  useTheme,
-  alpha,
   Chip,
-  Paper,
+  Avatar,
+  alpha,
   Stack,
-  Divider,
-} from '@mui/material';
-import { motion } from 'framer-motion';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import SendIcon from '@mui/icons-material/Send';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+} from "@mui/material";
+
+import { motion } from "framer-motion";
+
+import RoomIcon from "@mui/icons-material/Room";
+import CallIcon from "@mui/icons-material/Call";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import TimelapseIcon from "@mui/icons-material/Timelapse";
+import SendIcon from "@mui/icons-material/Send";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import StarIcon from "@mui/icons-material/Star";
+import testimonialImage from "../assets/9.png";
+import heroBackground from "../assets/34.png";
+import contactIllustration from "../assets/35.png";
 
 const Contact = () => {
-  // Brand Colors (Same as About page)
   const colors = {
-    orange: '#FF6B35',
-    orangeLight: '#FF8A5C',
-    orangeDark: '#E55A2B',
-    yellow: '#FFD700',
-    yellowLight: '#FFE44D',
-    yellowDark: '#FFC107',
-    pink: '#FF69B4',
-    pinkLight: '#FFB6C1',
-    pinkDark: '#FF1493',
+    orange: "#ff6b35",
+    orangeDark: "#e85a2a",
+    yellow: "#ffc107",
+    pink: "#ff4f9a",
+    green: "#25D366",
   };
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
-  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
-  const contactInfo = [
-    {
-      icon: <LocationOnIcon sx={{ fontSize: 40 }} />,
-      title: 'Visit Us',
-      details: ['123, Abacus Tower', 'Educational District', 'Mumbai - 400001', 'Maharashtra, India'],
-      color: colors.orange,
-    },
-    {
-      icon: <PhoneIcon sx={{ fontSize: 40 }} />,
-      title: 'Call Us',
-      details: ['+91 98765 43210', '+91 98765 43211', 'Mon-Sat: 9AM - 7PM'],
-      color: colors.yellow,
-    },
-    {
-      icon: <EmailIcon sx={{ fontSize: 40 }} />,
-      title: 'Email Us',
-      details: ['info@prokidz.com', 'support@prokidz.com', 'careers@prokidz.com'],
-      color: colors.pink,
-    },
-    {
-      icon: <AccessTimeIcon sx={{ fontSize: 40 }} />,
-      title: 'Working Hours',
-      details: ['Monday - Friday: 9AM - 8PM', 'Saturday: 10AM - 5PM', 'Sunday: Closed'],
-      color: colors.orange,
-    },
-  ];
-
- 
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+
     setSnackbar({
       open: true,
-      message: 'Thank you! We will get back to you soon.',
-      severity: 'success',
+      message: "Message sent successfully!",
+      severity: "success",
     });
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    });
   };
 
-  const handleCloseSnackbar = () => {
-    setSnackbar({ ...snackbar, open: false });
-  };
+  const contactInfo = [
+    {
+      icon: <RoomIcon sx={{ fontSize: 34 }} />,
+      title: "Visit Us",
+      details: [
+        "123, Abacus Tower",
+        "Educational District",
+        "Mumbai - 400001",
+        "Maharashtra, India",
+      ],
+      color: colors.orange,
+    },
+    {
+      icon: <CallIcon sx={{ fontSize: 34 }} />,
+      title: "Call Us",
+      details: [
+        "+91 98765 43210",
+        "+91 98765 43211",
+        "Mon-Sat: 9AM - 7PM",
+      ],
+      color: colors.yellow,
+    },
+    {
+      icon: <EmailOutlinedIcon sx={{ fontSize: 34 }} />,
+      title: "Email Us",
+      details: [
+        "info@prokidz.com",
+        "support@prokidz.com",
+        "careers@prokidz.com",
+      ],
+      color: colors.pink,
+    },
+    {
+      icon: <TimelapseIcon sx={{ fontSize: 34 }} />,
+      title: "Working Hours",
+      details: [
+        "Monday - Friday: 9AM - 8PM",
+        "Saturday: 10AM - 5PM",
+        "Sunday: Closed",
+      ],
+      color: colors.orange,
+    },
+  ];
 
   return (
-    <Box>
-      {/* Hero Section with Orange Background */}
+    <Box sx={{ bgcolor: "#fffaf7" }}>
+      {/* HERO SECTION */}
       <Box
         sx={{
-          bgcolor: colors.orange,
-          color: 'white',
-          py: { xs: 6, md: 8 },
-          textAlign: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-          borderRadius: '0 0 60px 60px',
+          width: "100%",
+          height: { xs: 250, md: 420 },
+          backgroundImage: `url(${heroBackground})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          borderRadius: { xs: "0 0 30px 30px", md: "0 0 60px 60px" },
+          overflow: "hidden",
         }}
-      >
-        <Container maxWidth="md">
-          <motion.div
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Chip 
-              label="📞 Get in Touch" 
-              sx={{ 
-                bgcolor: colors.yellow, 
-                color: colors.orangeDark,
-                mb: 3,
-                fontWeight: 600,
-                fontSize: '1rem',
-                py: 2,
-              }} 
-            />
-            <Typography 
-              variant="h2" 
-              gutterBottom 
-              sx={{ 
-                fontWeight: 800,
-                fontSize: { xs: 36, md: 48, lg: 56 },
-              }}
-            >
-              Contact Us
-            </Typography>
-            <Typography 
-              variant="h5" 
-              sx={{ 
-                opacity: 0.95,
-                maxWidth: 500,
-                mx: 'auto',
-              }}
-            >
-              We'd love to hear from you. Let's start a conversation!
-            </Typography>
-          </motion.div>
-        </Container>
-        
-        {/* Decorative Circles */}
-        <Box sx={{ position: 'absolute', top: -50, right: -50, width: 200, height: 200, borderRadius: '50%', bgcolor: alpha(colors.yellow, 0.2) }} />
-        <Box sx={{ position: 'absolute', bottom: -50, left: -50, width: 150, height: 150, borderRadius: '50%', bgcolor: alpha(colors.pink, 0.2) }} />
-      </Box>
+      />
 
-      <Container sx={{ py: 8 }}>
-        <Grid container spacing={4}>
-          {/* Contact Form */}
-          <Grid item xs={12} md={7}>
+      {/* MAIN SECTION */}
+      <Container maxWidth="xl" sx={{ py: { xs: 5, md: 8 } }}>
+        {/* FORM AND IMAGE - SINGLE ROW USING FLEXBOX */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            mb: 7,
+            alignItems: "stretch",
+          }}
+        >
+          {/* LEFT SIDE - FORM */}
+          <Box sx={{ flex: { xs: "1 1 auto", md: "0 0 58.333333%" }, width: { xs: "100%", md: "auto" } }}>
             <motion.div
-              initial={{ x: -50, opacity: 0 }}
+              initial={{ x: -40, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{ height: "100%" }}
             >
-              <Card sx={{ p: { xs: 2, md: 4 }, borderRadius: 4, borderTop: `4px solid ${colors.orange}` }}>
-                <Box sx={{ mb: 3 }}>
-                  <Chip 
-                    label="Send Message" 
-                    sx={{ bgcolor: alpha(colors.orange, 0.1), color: colors.orange, mb: 2 }} 
-                  />
-                  <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: colors.orange }}>
-                    Send us a Message
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    Have questions? We're here to help. Fill out the form and we'll respond within 24 hours.
-                  </Typography>
-                </Box>
+              <Card
+                sx={{
+                  p: { xs: 3, md: 5 },
+                  borderRadius: "30px",
+                  boxShadow: "0 10px 35px rgba(0,0,0,0.08)",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap:2,
+                }}
+              >
+                <Stack direction="row" spacing={2} alignItems="center" mb={3}>
+                  <Avatar
+                    sx={{
+                      bgcolor: colors.orange,
+                      width: 65,
+                      height: 65,
+                    }}
+                  >
+                    <SupportAgentIcon sx={{ fontSize: 34 }} />
+                  </Avatar>
 
-                <form onSubmit={handleSubmit}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
+                  <Box>
+                    <Chip
+                      label="Send Message"
+                      sx={{
+                        bgcolor: alpha(colors.orange, 0.12),
+                        color: colors.orange,
+                        fontWeight: 700,
+                        mb: 1,
+                      }}
+                    />
+
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        fontWeight: 800,
+                        color: "#151542",
+                        
+                        fontSize: {
+                          xs: "1.8rem",
+                          md: "2.5rem",
+                        },
+                      }}
+                    >
+                      We'd Love to Hear From You
+                    </Typography>
+                  </Box>
+                </Stack>
+
+                <form onSubmit={handleSubmit} style={{ flex: 1 }}>
+                  <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                    <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 3 }}>
                       <TextField
                         fullWidth
                         label="Your Name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        required
-                        variant="outlined"
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                              borderColor: colors.orange,
-                            },
-                          },
-                        }}
                       />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
                         label="Email Address"
                         name="email"
-                        type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        required
-                        variant="outlined"
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                              borderColor: colors.pink,
-                            },
-                          },
-                        }}
                       />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
+                    </Box>
+
+                    <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 3 }}>
                       <TextField
                         fullWidth
                         label="Phone Number"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        variant="outlined"
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                              borderColor: colors.yellow,
-                            },
-                          },
-                        }}
                       />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
                         label="Subject"
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        required
-                        variant="outlined"
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                              borderColor: colors.orange,
-                            },
-                          },
-                        }}
                       />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        label="Your Message"
-                        name="message"
-                        multiline
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        variant="outlined"
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                              borderColor: colors.pink,
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        size="large"
-                        endIcon={<SendIcon />}
-                        fullWidth
-                        sx={{ 
-                          py: 1.5,
-                          bgcolor: colors.orange,
-                          '&:hover': { bgcolor: colors.orangeDark },
-                          fontWeight: 700,
-                        }}
-                      >
-                        Send Message
-                      </Button>
-                    </Grid>
-                  </Grid>
+                    </Box>
+
+                    <TextField
+                      fullWidth
+                      multiline
+                      rows={6}
+                      label="Your Message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                    />
+
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      endIcon={<SendIcon />}
+                      sx={{
+                        py: 1.8,
+                        borderRadius: "14px",
+                        fontSize: "1rem",
+                        fontWeight: 700,
+                        bgcolor: colors.orange,
+                        boxShadow: "none",
+                        "&:hover": {
+                          bgcolor: colors.orangeDark,
+                        },
+                      }}
+                    >
+                      Send Message
+                    </Button>
+                  </Box>
                 </form>
               </Card>
             </motion.div>
-          </Grid>
+          </Box>
 
-          {/* Contact Information */}
-          <Grid item xs={12} md={5}>
+          {/* RIGHT SIDE - IMAGE */}
+          <Box sx={{ flex: { xs: "1 1 auto", md: "0 0 41.666667%" }, width: { xs: "100%", md: "auto" } }}>
             <motion.div
-              initial={{ x: 50, opacity: 0 }}
+              initial={{ x: 40, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{ height: "100%" }}
             >
-              <Box sx={{ mb: 3 }}>
-                <Chip 
-                  label="Contact Info" 
-                  sx={{ bgcolor: alpha(colors.pink, 0.1), color: colors.pink, mb: 2 }} 
+              <Card
+                sx={{
+                  borderRadius: "30px",
+                  overflow: "hidden",
+                  height: "100%",
+                  minHeight: { xs: 350, md: "auto" },
+                  boxShadow: "0 10px 35px rgba(0,0,0,0.08)",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={contactIllustration}
+                  alt="contact"
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
                 />
-                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: colors.pink }}>
-                  Get in Touch
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  Multiple ways to reach us. Choose what works best for you.
-                </Typography>
-              </Box>
-
-              <Grid container spacing={3}>
-                {contactInfo.map((info, index) => (
-                  <Grid item xs={12} key={index}>
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Card sx={{ p: 2, borderLeft: `4px solid ${info.color}`, borderRadius: 2 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                          <Box sx={{ color: info.color }}>{info.icon}</Box>
-                          <Box>
-                            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                              {info.title}
-                            </Typography>
-                            {info.details.map((detail, idx) => (
-                              <Typography key={idx} variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
-                                {detail}
-                              </Typography>
-                            ))}
-                          </Box>
-                        </Box>
-                      </Card>
-                    </motion.div>
-                  </Grid>
-                ))}
-              </Grid>
-
-              {/* WhatsApp Support */}
-              <Card sx={{ mt: 3, p: 3, textAlign: 'center', bgcolor: alpha(colors.yellow, 0.1), borderRadius: 3 }}>
-                <SupportAgentIcon sx={{ fontSize: 50, color: colors.orange, mb: 1 }} />
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                  24/7 Support Available
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  Chat with our support team anytime
-                </Typography>
-                <Button 
-                  variant="contained" 
-                  startIcon={<WhatsAppIcon />}
-                  sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#128C7E' } }}
-                >
-                  WhatsApp Us
-                </Button>
-              </Card>
-
-              {/* Social Media Links */}
-              <Card sx={{ mt: 3, p: 3, textAlign: 'center', borderRadius: 3 }}>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: colors.pink }}>
-                  Connect With Us
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  Follow us on social media for updates
-                </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
-                  <IconButton
-                    sx={{ bgcolor: alpha(colors.orange, 0.1), color: colors.orange, '&:hover': { bgcolor: colors.orange, color: 'white' } }}
-                    href="https://facebook.com"
-                    target="_blank"
-                  >
-                    <FacebookIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{ bgcolor: alpha(colors.pink, 0.1), color: colors.pink, '&:hover': { bgcolor: colors.pink, color: 'white' } }}
-                    href="https://instagram.com"
-                    target="_blank"
-                  >
-                    <InstagramIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{ bgcolor: alpha(colors.yellow, 0.1), color: colors.yellowDark, '&:hover': { bgcolor: colors.yellow, color: colors.orangeDark } }}
-                    href="https://twitter.com"
-                    target="_blank"
-                  >
-                    <TwitterIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{ bgcolor: alpha(colors.orange, 0.1), color: colors.orange, '&:hover': { bgcolor: colors.orange, color: 'white' } }}
-                    href="https://youtube.com"
-                    target="_blank"
-                  >
-                    <YouTubeIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{ bgcolor: alpha(colors.pink, 0.1), color: colors.pink, '&:hover': { bgcolor: colors.pink, color: 'white' } }}
-                    href="https://linkedin.com"
-                    target="_blank"
-                  >
-                    <LinkedInIcon />
-                  </IconButton>
-                </Box>
               </Card>
             </motion.div>
-          </Grid>
-        </Grid>
-
-        {/* Map Section */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <Box sx={{ mt: 8 }}>
-            <Chip 
-              label="Our Location" 
-              sx={{ bgcolor: alpha(colors.orange, 0.1), color: colors.orange, mx: 'auto', display: 'table', mb: 2 }} 
-            />
-            <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 700, color: colors.orange }}>
-              Find Us Here
-            </Typography>
-            <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 4 }}>
-              Visit our main center in Mumbai
-            </Typography>
-            <Card sx={{ overflow: 'hidden', borderRadius: 4, boxShadow: 8 }}>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.234567890123!2d72.877655!3d19.075984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da5edfd4f3e5a8c!2sMumbai!5e0!3m2!1sen!2sin!4v1645600000000!5m2!1sen!2sin"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                title="Pro Kidz Location"
-              ></iframe>
-            </Card>
           </Box>
-        </motion.div>
-      </Container>
+        </Box>
+
+        {/* CONTACT INFO CARDS */}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 3,
+            mb: 4,
+          }}
+        >
+          {contactInfo.map((item, index) => (
+            <Box
+              key={index}
+              sx={{
+                flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 12px)", lg: "1 1 calc(25% - 18px)" },
+                minWidth: { xs: "100%", sm: "calc(50% - 12px)", lg: "calc(25% - 18px)" },
+              }}
+            >
+              <Card
+                sx={{
+                  p: 2,
+                  borderRadius: "24px",
+                  textAlign: "center",
+                  height: "100%",
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.06)",
+                  borderTop: `5px solid ${item.color}`,
+                }}
+              >
+                <Avatar
+                  sx={{
+                    bgcolor: alpha(item.color, 0.15),
+                    color: item.color,
+                    width: 75,
+                    height: 75,
+                    mx: "auto",
+                    mb: 2,
+                  }}
+                >
+                  {item.icon}
+                </Avatar>
+
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 700,
+                    mb: 2,
+                    color: item.color,
+                  }}
+                >
+                  {item.title}
+                </Typography>
+
+                {item.details.map((detail, i) => (
+                  <Typography
+                    key={i}
+                    variant="body2"
+                    sx={{
+                      color: "#555",
+                      mb: 1,
+                    }}
+                  >
+                    {detail}
+                  </Typography>
+                ))}
+              </Card>
+            </Box>
+          ))}
+        </Box>
+
+        {/* SUPPORT SECTION */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            mt: 3,
+          }}
+        >
+          {/* WHATSAPP */}
+         <Box sx={{ flex: 1 }}>
+  <Card
+    sx={{
+      p: 4,
+      borderRadius: "24px",
+      textAlign: "center",
+      bgcolor: "#f4fff7",
+      height: "100%",
+    }}
+  >
+    <Avatar
+      sx={{
+        bgcolor: colors.green,
+        width: 85,
+        height: 85,
+        mx: "auto",
+        mb: 2,
+      }}
+    >
+      <WhatsAppIcon sx={{ fontSize: 45 }} />
+    </Avatar>
+
+    <Typography
+      variant="h4"
+      sx={{
+        fontWeight: 800,
+        color: "#1d8f46",
+        mb: 1,
+      }}
+    >
+      24/7 Support Available
+    </Typography>
+
+    <Typography color="text.secondary" mb={3}>
+      Chat with our support team anytime on WhatsApp
+    </Typography>
+
+    <Button
+      variant="contained"
+      startIcon={<WhatsAppIcon />}
+      onClick={() => {
+        const phoneNumber = "91999999999"; 
+        const message = "Hello, I need support regarding ProKidz";
+        
+       
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+         
+          window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+        } else {
+        
+          window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+        }
+      }}
+      sx={{
+        bgcolor: colors.green,
+        px: 5,
+        py: 1.5,
+        borderRadius: "12px",
+        "&:hover": {
+          bgcolor: "#128C7E",
+        },
+      }}
+    >
+      WhatsApp Us
+    </Button>
+  </Card>
+</Box>
+
+       
+         {/* SOCIAL */}
+<Box sx={{ }}>
+  <Card
+    sx={{
+      p: 4,
+      borderRadius: "24px",
+      textAlign: "center",
+      bgcolor: "#fff5fa",
+      height: "100%",
+   
+    }}
+  >
+    <Typography
+      variant="h4"
+      sx={{
+        fontWeight: 800,
+        color: colors.pink,
+        mb: 1,
+      }}
+    >
+      Connect With Us
+    </Typography>
+
+    <Typography color="text.secondary" mb={3}>
+      Follow us on social media for updates and inspiration
+    </Typography>
+
+<Stack
+  direction="row"
+  spacing={3}
+  justifyContent="center"
+  alignItems="center"
+  flexWrap="wrap"
+  sx={{
+    mt: 3,
+    width: "100%",
+    "& .MuiIconButton-root": {
+      margin: "0 4px",
+    }
+  }}
+>
+
+  <IconButton
+    onClick={() => window.open("https://wa.me/91999999999", "_blank")}
+    sx={{
+      bgcolor: "#25D366",
+      color: "#fff",
+      width: 56,
+      height: 56,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px) scale(1.05)",
+        bgcolor: "#20b859",
+      },
+    }}
+  >
+    <WhatsAppIcon sx={{ fontSize: 28 }} />
+  </IconButton>
+
+  <IconButton
+    onClick={() => window.open("https://facebook.com/yourpage", "_blank")}
+    sx={{
+      bgcolor: "#4267B2",
+      color: "#fff",
+      width: 56,
+      height: 56,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px) scale(1.05)",
+        bgcolor: "#365899",
+      },
+    }}
+  >
+    <FacebookIcon sx={{ fontSize: 28 }} />
+  </IconButton>
+
+  <IconButton
+    onClick={() => window.open("https://instagram.com/yourpage", "_blank")}
+    sx={{
+      bgcolor: "#E4405F",
+      color: "#fff",
+      width: 56,
+      height: 56,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px) scale(1.05)",
+        bgcolor: "#c13516",
+      },
+    }}
+  >
+    <InstagramIcon sx={{ fontSize: 28 }} />
+  </IconButton>
+
+  <IconButton
+    onClick={() => window.open("https://twitter.com/yourpage", "_blank")}
+    sx={{
+      bgcolor: "#1DA1F2",
+      color: "#fff",
+      width: 56,
+      height: 56,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px) scale(1.05)",
+        bgcolor: "#0c85d0",
+      },
+    }}
+  >
+    <TwitterIcon sx={{ fontSize: 28 }} />
+  </IconButton>
+
+  <IconButton
+    onClick={() => window.open("https://youtube.com/yourchannel", "_blank")}
+    sx={{
+      bgcolor: "#FF0000",
+      color: "#fff",
+      width: 56,
+      height: 56,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px) scale(1.05)",
+        bgcolor: "#cc0000",
+      },
+    }}
+  >
+    <YouTubeIcon sx={{ fontSize: 28 }} />
+  </IconButton>
+
+  <IconButton
+    onClick={() => window.open("https://linkedin.com/company/yourpage", "_blank")}
+    sx={{
+      bgcolor: "#0077B5",
+      color: "#fff",
+      width: 56,
+      height: 56,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px) scale(1.05)",
+        bgcolor: "#005582",
+      },
+    }}
+  >
+    <LinkedInIcon sx={{ fontSize: 28 }} />
+  </IconButton>
+</Stack>
+  </Card>
+</Box>
+        </Box>
+
+        {/* TESTIMONIAL */}
+       <Card
+  sx={{
+    mt: 2,
+    p: { xs: 3, md: 3},
+    borderRadius: "30px",
+    bgcolor: "#fffdf8",
+    boxShadow: "0 8px 25px rgba(0,0,0,0.06)",
+  }}
+>
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: { xs: "column", md: "row" },
+      gap: 4,
+      alignItems: "center",
+    }}
+  >
+    <Box sx={{ flex: { xs: "1 1 auto", md: "0 0 40%" }, textAlign: "center" }}>
+      <img
+        src={testimonialImage}
+        alt="Riya Sharma"
+        style={{
+          width: "100%",
+          height: 240,
+         
+          objectFit: "contain",
+          margin: "0 auto",
+         
+          display: "block",
+        }}
+      />
+
+    
 
      
+    </Box>
 
-   
+    <Box sx={{ flex: { xs: "1 1 auto", md: "0 0 60%" } }}>
+      <Typography
+        variant="h6"
+        sx={{
+          lineHeight: 1.8,
+          color: "#333",
+          mb: 2,
+        }}
+      >
+        "The teaching methodology at ProKidz is outstanding!
+        My son's abacus skills have improved dramatically.
+        The support team is always responsive and helpful."
+      </Typography>
 
-      {/* Snackbar for form submission */}
+      <Stack direction="row" spacing={0.5}>
+        {[...Array(5)].map((_, i) => (
+          <StarIcon
+            key={i}
+            sx={{
+              color: colors.yellow,
+            }}
+          />
+        ))}
+      </Stack>
+    </Box>
+  </Box>
+</Card>
+      </Container>
+
+      {/* SNACKBAR */}
       <Snackbar
         open={snackbar.open}
-        autoHideDuration={6000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        autoHideDuration={4000}
+        onClose={() =>
+          setSnackbar({
+            ...snackbar,
+            open: false,
+          })
+        }
       >
-        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>
+        <Alert severity={snackbar.severity}>
           {snackbar.message}
         </Alert>
       </Snackbar>
