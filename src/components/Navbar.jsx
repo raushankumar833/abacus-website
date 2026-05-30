@@ -18,24 +18,22 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import LoginPage from './LoginPage';
 
 // Colors matching Home page theme
 const colors = {
   orange: '#FF6B35',
   darkOrange: '#E85D2C',
-  green: '#4CAF50',
-  blue: '#2196F3',
-  yellow: '#FFC107',
   white: '#FFFFFF',
   black: '#2D2D2D',
   gray: '#757575',
-  lightGray: '#F8F9FA',
 };
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 900px)');
-  const location = useLocation(); // Get current route
+  const location = useLocation();
 
   const menuItems = [
     { text: 'Home', path: '/' },
@@ -45,7 +43,6 @@ const Navbar = () => {
     { text: 'Contact', path: '/contact' },
   ];
 
-  // Helper function to check if a menu item is active
   const isActive = (path) => {
     if (path === '/') {
       return location.pathname === '/';
@@ -57,22 +54,28 @@ const Navbar = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleLoginOpen = () => {
+    setLoginOpen(true);
+    setMobileOpen(false);
+  };
+
+  const handleLoginClose = () => {
+    setLoginOpen(false);
+  };
+
   // Mobile Drawer
   const drawer = (
     <Box sx={{ width: 280, height: '100%', bgcolor: colors.white }}>
-      {/* Drawer Header with Close Button */}
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
         <IconButton onClick={handleDrawerToggle}>
           <CloseIcon />
         </IconButton>
       </Box>
 
-      {/* Logo in Drawer */}
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
         <Box component="img" src={logo} alt="ProKidz Logo" sx={{ height: 80, objectFit: 'contain' }} />
       </Box>
 
-      {/* Menu Items */}
       <List>
         {menuItems.map((item) => (
           <ListItem
@@ -88,7 +91,6 @@ const Navbar = () => {
               mb: 1,
               borderRadius: 3,
               transition: '0.3s',
-              // Active state styling for mobile
               bgcolor: isActive(item.path) ? alpha(colors.orange, 0.1) : 'transparent',
               borderLeft: isActive(item.path) ? `3px solid ${colors.orange}` : '3px solid transparent',
               '&:hover': {
@@ -109,14 +111,11 @@ const Navbar = () => {
         ))}
       </List>
 
-      {/* CTA Button in Drawer */}
       <Box sx={{ p: 2, mt: 2 }}>
         <Button
-          component={RouterLink}
-          to="/enroll"
           fullWidth
           variant="contained"
-          onClick={handleDrawerToggle}
+          onClick={handleLoginOpen}
           sx={{
             bgcolor: colors.orange,
             color: colors.white,
@@ -146,12 +145,10 @@ const Navbar = () => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 2 }}>
-            {/* Logo */}
             <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
               <Box component="img" src={logo} alt="ProKidz Logo" sx={{ height: { xs: 45, md: 55 }, objectFit: 'contain' }} />
             </RouterLink>
 
-            {/* Desktop Menu */}
             {!isMobile ? (
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
                 {menuItems.map((item) => (
@@ -167,7 +164,6 @@ const Navbar = () => {
                       borderRadius: 2,
                       transition: '0.3s',
                       position: 'relative',
-                      // Add underline indicator for active state
                       '&::after': isActive(item.path) ? {
                         content: '""',
                         position: 'absolute',
@@ -190,8 +186,7 @@ const Navbar = () => {
                 ))}
                 <Button
                   variant="contained"
-                  component={RouterLink}
-                  to="/enroll"
+                  onClick={handleLoginOpen}
                   sx={{
                     bgcolor: colors.orange,
                     color: colors.white,
@@ -218,10 +213,12 @@ const Navbar = () => {
         </Container>
       </AppBar>
 
-      {/* Mobile Drawer */}
       <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
         {drawer}
       </Drawer>
+
+      {/* Login Page Component */}
+      <LoginPage open={loginOpen} onClose={handleLoginClose} />
     </>
   );
 };
